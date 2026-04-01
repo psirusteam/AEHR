@@ -10,11 +10,8 @@ rmd_files: [
   "03-Basesdedatos.Rmd",
   "04-Continuas.Rmd",
   "05-Categóricas.Rmd",
-  "06-Regresión.Rmd"
-  #,
-  # "07-Gráficas.Rmd",
-  # "08-Generalizados.Rmd",
-  # "09-Generalizados2.Rmd",
+  "06-Regresión.Rmd",
+  "07-GLM.Rmd",
   # "10-Multinivel.Rmd",
   # "11-Imputación.Rmd",
   # "99-Referencias.Rmd"

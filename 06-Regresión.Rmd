@@ -133,13 +133,13 @@ $$
 w_k^{Normalized} = \frac{w_k}{\sum w_k}
 $$
 
-Es importante destacar que, en ambos métodos, los pesos ajustados se obtienen mediante transformaciones multiplicativas directas de los pesos muestrales originales. Por ello, no deben emplearse para calcular totales poblacionales ni modifican los coeficientes de variación asociados a ellos. Asimismo, estos procedimientos no alteran las estimaciones de razones ---como medias o proporciones---, ya que en tales casos los pesos se cancelan en el cociente.
+Es importante destacar que, en ambos métodos, los pesos ajustados se obtienen mediante transformaciones multiplicativas directas de los pesos muestrales originales. Por ello, no deben emplearse para calcular totales poblacionales ni modifican los coeficientes de variación asociados a ellos. Asimismo, estos procedimientos no alteran las estimaciones de razones, como medias o proporciones, ya que en tales casos los pesos se cancelan en el cociente.
 
 En la práctica, el uso de estos ajustes puede considerarse una solución pragmática en contextos donde no se dispone de software especializado para encuestas. No obstante,  cuando se cuenta con herramientas como los paquetes  `survey` y `srvyr` de R, descritos en los capítulos anteriores, el reescalamiento deja de ser necesario, pues dichos paquetes realizan el tratamiento adecuado para preservar tanto la representatividad como las propiedades inferenciales del modelo. 
 
 En definitiva, la decisión sobre aplicar o no ponderaciones exige un análisis crítico de los objetivos del estudio, del diseño de la encuesta y de la robustez de los modelos estimados, complementado siempre con un diagnóstico riguroso de residuales, observaciones influyentes y supuestos, tal como se detalla en las secciones siguientes de este capítulo.
 
-## Enfoques inferenciales para el análisis de datos
+## Enfoques inferenciales
 
 En el análisis de encuestas, uno de los principales retos consiste en manejar adecuadamente la variabilidad de los datos, la cual proviene de dos fuentes fundamentales: el diseño muestral, que determina cómo se recolecta la información, y el modelo estadístico, que define cómo se interpreta dicha información para inferir propiedades de la población. Ignorar cualquiera de estas dimensiones puede comprometer la validez de los resultados.
 
@@ -151,7 +151,7 @@ En contraste, la inferencia combinada propone un marco unificado en el que se in
 
 ## Estimación de los parámetros
 
-Una vez establecidos los supuestos del modelo y las características distribucionales de los errores, el paso siguiente consiste en la estimación de los parámetros teniendo en cuenta el diseño de muestreo complejo. A modo ilustrativo, si en lugar de observar una muestra de tamaño $n$ de los $N$ elementos de la población se hubiera realizado un censo completo, el parámetro de regresión de población finita $\beta_{1}$ podría calcularse como sigue [@tellez2015estadistica]:
+Una vez establecidos los supuestos del modelo y las características distribucionales de los errores, el paso siguiente consiste en la estimación de los parámetros teniendo en cuenta el diseño de muestreo complejo. A modo ilustrativo, si en lugar de observar una muestra de tamaño $n$ de los $N$ elementos de la población se hubiera realizado un censo completo, el parámetro de regresión de población finita $\beta_{1}$ podría calcularse como sigue:
 
 $$
 \beta_{1}  =  \frac{\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)\left(Y_{i}-\bar{Y}\right)}{\sum_{i=1}^{N}\left(X_{i}-\bar{X}\right)^{2}}
@@ -482,11 +482,15 @@ p <- 2
 R2Adj <- 1 - ((n - 1) / (n - p)) * (1 - R2)
 ```
 
-```{r tab-r2adj, echo=FALSE, tab.cap="Estimación del coeficiente de determinación ajustado"}
-data.frame(
+```{r, echo=FALSE}
+res <- data.frame(
   Estadístico = c("R cuadrado", "R cuadrado ajustado", "n (q-weighted)", "p (parametros)"),
   Valor = c(round(R2, 5), round(R2Adj, 5), round(n, 0), round(p, 0))
-) %>%
+)
+```
+
+```{r tab-r2adj, echo=FALSE, tab.cap="Estimación del coeficiente de determinación ajustado", echo=FALSE}
+res %>%
   tabla_fmt()
 ```
 
@@ -816,11 +820,13 @@ donde $\sum_{h}a_{h}$ es el número total de conglomerados de primera etapa y $H
 
 Para aplicar estos procedimientos, se emplean las funciones `summary.svyglm` para las pruebas $t$ y `confint.svyglm` para los intervalos de confianza, cuyos resultados se presentan en la Tabla \@ref(tab:tab-inferencia-modelo):
 
-```{r tab-inferencia-modelo, tab.cap="Pruebas t e intervalos de confianza al 95% para los parámetros del modelo"}
+```{r}
 resumen <- summary(mod_svy)$coefficients %>%
   as.data.frame() %>%
   tibble::rownames_to_column("Parámetro")
+```
 
+```{r tab-inferencia-modelo, tab.cap="Pruebas t e intervalos de confianza al 95% para los parámetros del modelo", echo=FALSE}
 resumen %>% tabla_fmt()
 ```
 

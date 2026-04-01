@@ -1,12 +1,16 @@
 # _tabla_helper.R ─────────────────────────────────────────────────────────────
-# tabla_fmt(): tabla elegante, numerada y con caption para
-#   bookdown::gitbook  Y  bookdown::word_document2
+# tabla_fmt(): tabla numerada con caption para bookdown::gitbook Y word_document2
 #
-# Clave técnica:
-#   - Word  → flextable  (numeración nativa Word, estilo booktabs elegante)
-#   - HTML  → knitr::kable(format="pipe") + kableExtra
-#             "pipe" es el único formato que bookdown intercepta para asignar
-#             el caption del chunk (tab.cap=) y resolver \@ref() en gitbook
+# MECANISMO:
+#   Word  → flextable  (estilo booktabs, Times New Roman)
+#   HTML  → knitr::kable(format="pipe") puro, SIN kable_styling()
+#
+# Por qué sin kable_styling():
+#   kable(format="pipe") produce markdown que bookdown envuelve con el caption
+#   de tab.cap= (Cuadro N.M). kable_styling() convierte ese markdown a HTML
+#   y añade su propio <caption> con el mismo texto → duplicado "Cuadro N.M:
+#   Cuadro N.M: título". Eliminando kable_styling() el caption aparece una
+#   sola vez, correctamente numerado, y \@ref() se resuelve en ambos formatos.
 #
 # Uso:
 #   ```{r tab-mi-tabla, tab.cap="Título de la tabla"}
@@ -47,22 +51,15 @@ tabla_fmt <- function(df, digits = 3, col_names = NA) {
       set_table_properties(width = 1, layout = "autofit")
 
   } else {
-    # ── HTML / gitbook: kable "pipe" + kableExtra ────────────────────────────
-    # "pipe" format is what bookdown hooks into for tab.cap= / \@ref()
+    # ── HTML / gitbook: kable "pipe" puro ────────────────────────────────────
+    # SIN kable_styling(): kable_styling convierte el markdown a HTML y añade
+    # su propio <caption>, duplicando el que bookdown ya inserta desde tab.cap=.
     library(knitr)
-    library(kableExtra)
 
     knitr::kable(df,
                  format    = "pipe",
                  col.names = cn,
                  digits    = digits,
-                 align     = align) %>%
-      kable_styling(
-        bootstrap_options = c("striped", "hover", "condensed", "responsive"),
-        full_width        = FALSE,
-        position          = "center",
-        font_size         = 13
-      ) %>%
-      row_spec(0, bold = TRUE)
+                 align     = align)
   }
 }
