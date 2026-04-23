@@ -5,3 +5,11 @@
 .DS_Store
 /docs/*.md
 00_Caches
+*_cache/
+*_files/
+_bookdown_files/
+*.knit.md
+*.utf8.md
+Análisis de encuestas con R.rds
+Análisis-de-encuestas-con-R.log
+*.log

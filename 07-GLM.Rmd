@@ -7,8 +7,6 @@ knitr::opts_chunk$set(warning = FALSE,
                       fig.height = 4,
                       out.width = "70%")
 source("_tabla_helper.R")
-library(printr)
-library(kableExtra)
 library(ggplot2)
 ```
 

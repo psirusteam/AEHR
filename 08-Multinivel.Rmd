@@ -7,6 +7,9 @@ knitr::opts_chunk$set(warning = FALSE,
                       fig.height = 4,
                       out.width = "70%")
 source("_tabla_helper.R")
+
+knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE, error = FALSE)
+options(digits = 4)
 ```
 
 # Modelos multinivel {#cap-multinivel}
@@ -20,8 +23,6 @@ Entre las referencias fundamentales sobre el uso de modelos multinivel en encues
 Para iniciar este capítulo, se cargan las librerías necesarias, la base de datos y el tema gráfico de la CEPAL:
 
 ```{r multinivel-setup, include=TRUE}
-knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE, error = FALSE)
-options(digits = 4)
 library(survey)
 library(srvyr)
 library(TeachingSampling)
@@ -651,27 +652,31 @@ ggplot(data = pred_logit,
 
 ### Modelo nulo logístico
 
-El modelo nulo para la variable pobreza se formula como:
+El modelo nulo para la variable pobreza se especifica como un modelo multinivel de dos niveles con intercepto aleatorio por estrato:
 
-$$
-logit(\pi_{ij}) = \beta_{0j} + \epsilon_{ij}
-$$
 
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
 $$
-\beta_{0j} = \gamma_{00} + \tau_{0j}
+\text{logit}(\pi_{ij}) = \beta_{0j}
 $$
 
-con $\tau_{0j} \sim N(0, \sigma_\tau^2)$ y $\epsilon_{ij} \sim N(0, \sigma_\epsilon^2)$.
-
-> **⚠ Alerta de Giovany:** En los modelos logísticos mixtos (GLMM), el residual $\epsilon_{ij}$ de nivel 1 opera en escala logit y regularmente sigue una distribución logística estándar con varianza $\pi^2/3$, no sigue una distribución normal. El supuesto $\epsilon_{ij} \sim N(0, \sigma_\epsilon^2)$ puede generar confusión; se recomienda verificar su intención en el contexto del capítulo.
-
-La correlación intraclase se calcula de forma análoga al modelo lineal:
-
 $$
-\rho = \frac{\sigma_\tau^2}{\sigma_\tau^2 + \sigma_\epsilon^2}
+\beta_{0j} = \gamma_{00} + \tau_{0j}, 
+\qquad \tau_{0j} \sim N(0,\sigma_\tau^2)
 $$
 
-El ajuste en `R` es:
+donde $i$ representa al individuo y $j$ al estrato.
+
+Bajo el enfoque de variable latente, la ICC del modelo logístico se calcula como:
+
+$$
+\rho = 
+\frac{\sigma_\tau^2}
+{\sigma_\tau^2 + \frac{\pi^2}{3}}
+$$
+Note que en los modelos logísticos multinivel (GLMM) no se especifica un residual explícito de nivel 1 como en los modelos lineales multinivel. La variabilidad individual está incorporada en la distribución binomial del modelo. Para el cálculo de la correlación intraclase (ICC) se utiliza el enfoque de variable latente, donde la varianza de nivel 1 se aproxima mediante $\pi^2/3$, correspondiente a la varianza de la distribución logística estándar [@snijders2011].
+
+El ajuste en `R` se realiza de la siguiente manera:
 
 ```{r mod-logit-nulo-setup, mod_null2, echo=TRUE, eval=TRUE}
 mod_logist_null <- glmer(pobreza ~ (1 | Stratum),
@@ -699,7 +704,6 @@ tab_pred <- data.frame(Predicción = predict(mod_logist_null, type = "response")
 
 ```{r tab-icc-pred-logit-nulo, tab.cap="Predicciones del modelo logístico nulo y variable observada (primeras 6 observaciones)", echo=FALSE}
 tab_pred %>% tabla_fmt()
-
 ```
 
 La Tabla \@ref(tab:tab-calibracion-logit-nulo) verifica la calibración del modelo comparando las medias ponderadas de las predicciones y de la variable observada:
@@ -718,19 +722,22 @@ Las estimaciones son muy similares, lo que indica que el modelo está bien calib
 
 ### Modelo logístico con intercepto aleatorio
 
-El modelo con intercepto aleatorio para la variable pobreza permite que el nivel base de la probabilidad de pobreza varíe entre estratos, mientras la pendiente del gasto es común:
+El modelo con intercepto aleatorio para la variable pobreza permite que el nivel base de la probabilidad de pobreza varíe entre estratos, mientras que el efecto del gasto es común para todos ellos. Este modelo se especifica como:
+
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
 
 $$
-logit(\pi_{ij}) = \beta_0 + \beta_{1j} Gasto_{ij} + \epsilon_{ij}
+\text{logit}(\pi_{ij}) = \beta_{0j} + \beta_1 \, \text{Gasto}_{ij}
 $$
 
 con:
 
 $$
-\beta_{1j} = \gamma_{10} + \gamma_{11} Stratum_j + \tau_{1j}
+\beta_{0j} = \gamma_{00} + \tau_{0j}, 
+\qquad \tau_{0j} \sim N(0,\sigma_\tau^2),
 $$
 
-> **⚠ Alerta de Giovany:** En la ecuación anterior, $\beta_0$ es un intercepto fijo (sin subíndice $j$), mientras que $\beta_{1j}$ es una pendiente aleatoria. Esto convierte al modelo en un modelo de pendiente aleatoria, no de intercepto aleatorio. Si la intención es modelar variación en el intercepto entre estratos, la ecuación debería ser $logit(\pi_{ij}) = \beta_{0j} + \beta_1 Gasto_{ij} + \epsilon_{ij}$, con $\beta_{0j} = \gamma_{00} + \tau_{0j}$. Se recomienda verificar cuál de las dos formulaciones corresponde al modelo ajustado en el código.
+donde $i$ representa al individuo y $j$ al estrato. En este modelo, únicamente el intercepto varía entre estratos, mientras que la pendiente asociada al gasto es fija.
 
 ```{r mod-logit-int-aleatorio-setup, mod_Int_Aleatorio02, echo=TRUE, eval=TRUE}
 mod_logit_Int_Aleatorio <- glmer(
@@ -800,21 +807,55 @@ tab_pred %>%
 
 ### Modelo logístico con intercepto y pendiente aleatoria
 
-El modelo logístico con intercepto y pendiente aleatoria permite que tanto el nivel base de la probabilidad de pobreza como el efecto del gasto varíen entre estratos:
+Este modelo permite que tanto el nivel base de la probabilidad de pobreza como el efecto del gasto varíen entre estratos. En consecuencia, cada estrato posee su propia recta logística, caracterizada por un intercepto y una pendiente específicos.
+
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
 
 $$
-logit(\pi_{ij}) = \beta_{0j} + \beta_{1j} Gasto_{ij} + \epsilon_{ij}
+\text{logit}(\pi_{ij}) = \beta_{0j} + \beta_{1j}\,\text{Gasto}_{ij}
 $$
 
 con:
 
 $$
-\beta_{0j} = \gamma_{00} + \gamma_{01} Stratum_j + \tau_{0j}
+\begin{pmatrix}
+\beta_{0j} \\
+\beta_{1j}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gamma_{00} \\
+\gamma_{10}
+\end{pmatrix}
++
+\begin{pmatrix}
+\tau_{0j} \\
+\tau_{1j}
+\end{pmatrix}
 $$
 
 $$
-\beta_{1j} = \gamma_{10} + \gamma_{11} Stratum_j + \tau_{1j}
+\begin{pmatrix}
+\tau_{0j} \\
+\tau_{1j}
+\end{pmatrix}
+\sim
+N\!\left(
+\begin{pmatrix}
+0 \\
+0
+\end{pmatrix},
+\;
+\begin{pmatrix}
+\sigma^2_{0} & \sigma_{01} \\
+\sigma_{01} & \sigma^2_{1}
+\end{pmatrix}
+\right)
 $$
+
+En este modelo, los efectos aleatorios del intercepto y la pendiente pueden estar correlacionados, lo que permite capturar heterogeneidad en la relación entre gasto y pobreza entre estratos. 
+
+La implementación en R es la siguiente:
 
 ```{r mod-logit-pendiente-aleatoria-setup, mod_Int_y_pen_Aleatorio02, echo=TRUE, eval=TRUE}
 mod_logit_Pen_Aleatorio <- glmer(
@@ -882,27 +923,62 @@ tab_pred %>%
 
 ### Extensión con variable zona
 
-A continuación, se extiende el modelo incorporando la variable zona y el gasto medio por estrato como predictores adicionales:
+El modelo se extiende incorporando la variable zona y el gasto medio como predictores adicionales. En esta especificación, tanto el intercepto como los efectos del gasto, la zona y el gasto medio pueden variar entre estratos. De esta forma, cada estrato posee su propia superficie logística en función de estos predictores.
+
+$$Y_{ij} \sim \text{Bernoulli}(\pi_{ij})$$
 
 $$
-logit(\pi_{ij}) = \beta_{0j} + \beta_{1j} Gasto_{ij} + \beta_{2j} Zona_{ij} + \epsilon_{ij}
+\text{logit}(\pi_{ij}) =
+\beta_{0j}
++ \beta_{1j}\,\text{Gasto}_{ij}
++ \beta_{2j}\,\text{Zona}_{ij}
++ \beta_{3j}\,\mu_{ij}
 $$
 
 con:
 
 $$
-\beta_{0j} = \gamma_{00} + \gamma_{01} Stratum_j + \gamma_{02} \mu_j + \tau_{0j}
+\begin{pmatrix}
+\beta_{0j} \\
+\beta_{1j} \\
+\beta_{2j} \\
+\beta_{3j}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\gamma_{00} \\
+\gamma_{10} \\
+\gamma_{20} \\
+\gamma_{30}
+\end{pmatrix}
++
+\begin{pmatrix}
+\tau_{0j} \\
+\tau_{1j} \\
+\tau_{2j} \\
+\tau_{3j}
+\end{pmatrix}
 $$
 
 $$
-\beta_{1j} = \gamma_{10} + \gamma_{11} Stratum_j + \gamma_{12} \mu_j + \tau_{1j}
+\begin{pmatrix}
+\tau_{0j} \\
+\tau_{1j} \\
+\tau_{2j} \\
+\tau_{3j}
+\end{pmatrix}
+\sim
+N\!\left(
+\begin{pmatrix}
+0\\0\\0\\0
+\end{pmatrix},
+\mathbf{\Sigma}
+\right)
 $$
 
-$$
-\beta_{2j} = \gamma_{20} + \gamma_{21} Stratum_j + \gamma_{22} \mu_j + \tau_{2j}
-$$
+donde $\Sigma$ es la matriz completa de varianzas y covarianzas de los efectos aleatorios. 
 
-> **⚠ Alerta ecuación:** Al igual que en el modelo lineal, el documento original empleaba $\gamma_{12}$ en $\beta_{2j}$ en lugar de $\gamma_{22}$. Se ha corregido a $\gamma_{22}$ para mantener la coherencia en la notación.
+La implementación en R es la siguiente:
 
 ```{r mod-logit-zona-setup, mod_Int_y_pen_Aleatorio002, echo=TRUE, eval=TRUE}
 mod_logit_Pen_Aleatorio2 <- glmer(
@@ -914,6 +990,8 @@ mod_logit_Pen_Aleatorio2 <- glmer(
 )
 performance::icc(mod_logit_Pen_Aleatorio2)
 ```
+
+Aunque $\mu$ corresponde al gasto medio del estrato, en esta especificación se incorpora como covariable con pendiente aleatoria. Por tanto, el modelo no corresponde a una formulación clásica de variable contextual de nivel 2, sino a un modelo con efectos aleatorios asociados a dicha variable.
 
 La Figura \@ref(fig:fig-logit-zona-facet) presenta las curvas de probabilidad predichas desagregadas por zona, mostrando una variación importante en el efecto del gasto sobre la pobreza entre zona urbana y rural:
 
@@ -964,4 +1042,4 @@ tab_pred %>%
   ) %>% tabla_fmt()
 ```
 
-El modelo muestra buena calibración en ambas zonas, con medias ponderadas predichas y observadas muy cercanas, lo que confirma la adecuación del modelo para capturar la heterogeneidad geográfica en la probabilidad de pobreza.
+Esta especificación permite capturar heterogeneidad entre estratos en la forma en que el gasto, la localización geográfica y el contexto promedio se asocian con la probabilidad de pobreza. 

@@ -1,6 +1,6 @@
 --- 
 title: "Análisis de encuestas con R"
-author: "Andrés Gutiérrez^[Experto Regional en Estadísticas Sociales - Comisión Económica para América Latina y el Caribe (CEPAL) -  andres.gutierrez@cepal.org], Stalyn Guerrero^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL), guerrerostalyn@gmail.com], Cristian Téllez^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL), cftellezp@unal.edu.co], Giovany Babativa-Márquez^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL); Departamento de Estadística, Facultad de Ciencias, Universidad Nacional de Colombia – Sede Bogotá, Bogotá D.C., Colombia, jgbabativam@unal.edu.co]"
+author: "Andrés Gutiérrez^[Experto Regional en Estadísticas Sociales - Comisión Económica para América Latina y el Caribe (CEPAL) - andres.gutierrez@cepal.org], Giovany Babativa-Márquez^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL); Departamento de Estadística, Facultad de Ciencias, Universidad Nacional de Colombia – Sede Bogotá, Bogotá D.C., Colombia, jgbabativam@unal.edu.co], Stalyn Guerrero^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL), guerrerostalyn@gmail.com], Cristian Téllez^[Consultor - Comisión Económica para América Latina y el Caribe (CEPAL), cftellezp@unal.edu.co]"
 date: "`r Sys.Date()`"
 lang: es
 documentclass: book

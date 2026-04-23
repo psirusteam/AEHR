@@ -8,12 +8,12 @@ dplyr
 stringr
 forcats
 lubridate
-srvyr
+gt
 Matrix
 survival
 survey
+srvyr
+flextable
+officer
 convey
-gt
 patchwork
-knitr
-kableExtra

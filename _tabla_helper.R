@@ -1,21 +1,5 @@
-# _tabla_helper.R ─────────────────────────────────────────────────────────────
+# _tabla_helper.R para compilar el libro en Word o en Gitbook ─────────────────
 # tabla_fmt(): tabla numerada con caption para bookdown::gitbook Y word_document2
-#
-# MECANISMO:
-#   Word  → flextable  (estilo booktabs, Times New Roman)
-#   HTML  → knitr::kable(format="pipe") puro, SIN kable_styling()
-#
-# Por qué sin kable_styling():
-#   kable(format="pipe") produce markdown que bookdown envuelve con el caption
-#   de tab.cap= (Cuadro N.M). kable_styling() convierte ese markdown a HTML
-#   y añade su propio <caption> con el mismo texto → duplicado "Cuadro N.M:
-#   Cuadro N.M: título". Eliminando kable_styling() el caption aparece una
-#   sola vez, correctamente numerado, y \@ref() se resuelve en ambos formatos.
-#
-# Uso:
-#   ```{r tab-mi-tabla, tab.cap="Título de la tabla"}
-#   mis_datos %>% tabla_fmt()
-#   ```
 # ─────────────────────────────────────────────────────────────────────────────
 
 tabla_fmt <- function(df, digits = 3, col_names = NA) {
@@ -33,9 +17,17 @@ tabla_fmt <- function(df, digits = 3, col_names = NA) {
   align <- c("l", rep("c", max(ncols - 1L, 0L)))
 
   if (is_word) {
-    # ── Word: flextable ───────────────────────────────────────────────────────
     library(flextable)
     library(officer)
+
+    nms <- colnames(df)
+    nms[is.na(nms)] <- "NA"
+    colnames(df) <- nms
+
+    rn <- rownames(df)
+    if (!is.null(rn) && !identical(rn, as.character(seq_len(nrow(df))))) {
+      df <- cbind(` ` = rn, df)
+    }
 
     flextable(df) %>%
       border_remove() %>%
@@ -51,9 +43,6 @@ tabla_fmt <- function(df, digits = 3, col_names = NA) {
       set_table_properties(width = 1, layout = "autofit")
 
   } else {
-    # ── HTML / gitbook: kable "pipe" puro ────────────────────────────────────
-    # SIN kable_styling(): kable_styling convierte el markdown a HTML y añade
-    # su propio <caption>, duplicando el que bookdown ya inserta desde tab.cap=.
     library(knitr)
 
     knitr::kable(df,

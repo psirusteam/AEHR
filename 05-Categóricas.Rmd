@@ -444,25 +444,13 @@ dsg <- diseno %>%
                           labels = c("No pobre", "Pobre"))) 
 ```
 
-```{r, eval=FALSE}
+```{r tab-contingencia-pobreza-sexo, tab.cap="Proporción de hombres y mujeres en condición de pobreza y no pobreza"}
 dsg %>%
   group_by(pobreza,Sex) %>%
-  summarise(prop = survey_prop(vartype = c("se", "ci")))
-```
-
-```{r, echo=FALSE}
-res <- dsg %>%
-  group_by(pobreza,Sex) %>%
-  summarise(prop = survey_prop(vartype = c("se", "ci")))
-
-```
-
-```{r tab-contingencia-pobreza-sexo, tab.cap="Proporción de hombres y mujeres en condición de pobreza y no pobreza", echo=FALSE}
-res %>%
+  summarise(prop = survey_prop(vartype = c("se", "ci"))) %>%
   tabla_fmt()
 
 ```
-
 Como se puede observar, el 52.3% de las mujeres y el 47.6% son pobres. Generando intervalos de confianza al 95% de  (49.2%,	55.5%) para las mujeres y (44.5%,	50.7%) para los hombres.
 
 En la librería survey existe una alternativa para estimar tablas de contingencias y es utilizando la función `svyby` como se muestra a continuación, presentada en la Tabla \@ref(tab:tab-svyby-pobreza-sexo):
@@ -515,16 +503,11 @@ confint(tab_Sex_Ocupa) %>%
 Si ahora el objetivo es estimar la pobreza, pero por las distintas regiones que se tienen en la base de datos. Primero, dado que la variable *pobreza* es de tipo numérica, es necesario convertirla en factor y luego realizar la estimación con la función `svyby`, como se muestra en la Tabla \@ref(tab:tab-svyby-region-pobreza).
 
 
-```{r}
-
-tab_region_pobreza <- svyby(formula = ~as.factor(pobreza),  by = ~Region, 
-
+```{r tab-svyby-region-pobreza, tab.cap="Proporción en condición de pobreza por región"}
+tab_region_pobreza <- svyby(formula = ~as.factor(pobreza),  by = ~Region,
                             design =  diseno, FUN = svymean)
 tab_region_pobreza %>%
   tabla_fmt()
-```
-
-```{r tab-svyby-region-pobreza, tab.cap="Proporción en condición de pobreza por región"}
 ```
 De lo anterior se puede concluir que, en la región Norte, el 35% de las personas están en estado de pobreza mientras que en el sur es el 34%. La pobreza más alta se tiene en la región oriente con un 45% de pobres. Los errores estándares de las estimaciones.
 
@@ -633,17 +616,12 @@ Según @heeringa2017applied, las estimaciones de las proporciones de las filas e
 
 A manera de ejemplo, se requiere estimar ahora, el contraste de proporciones de mujeres en estado de pobreza versus los hombres en esta misma condición  ($\hat{p}_F - \hat{p}_M$). Para ellos, primero, estimemos la proporción de hombres y mujeres en estado de pobreza como se ha mostrado en capítulos anteriores, presentada en la Tabla \@ref(tab:tab-svyby-pobreza-sexo2):
 
-```{r}
-
-tab_sex_pobreza <- svyby(formula = ~pobreza, by = ~Sex, 
-
+```{r tab-svyby-pobreza-sexo2, tab.cap="Proporción en condición de pobreza por sexo"}
+tab_sex_pobreza <- svyby(formula = ~pobreza, by = ~Sex,
                          design = diseno, svymean, na.rm=T,
                          covmat = TRUE, vartype = c("se", "ci"))
 tab_sex_pobreza %>%
   tabla_fmt()
-```
-
-```{r tab-svyby-pobreza-sexo2, tab.cap="Proporción en condición de pobreza por sexo"}
 ```
 
 Ahora bien, para calcular la estimación de la diferencia de proporciones junto con sus errores estándares, se realizarán los siguientes pasos:
@@ -681,18 +659,13 @@ De lo que se concluye que, la diferencia entre las proporciones de mujeres y hom
 
 Otro ejercicio de interés en un análisis de encuestas de hogares es verificar la diferencia del desempleo por sexo. Al igual que el ejemplo anterior, se inicia con la estimación del porcentaje de desempleados por sexo, presentada en la Tabla \@ref(tab:tab-svyby-desempleo-sexo):
 
-```{r}
-
-tab_sex_desempleo <- svyby(formula = ~desempleo, by = ~Sex, 
-
-                           design  = diseno %>% filter(!is.na(desempleo)) , 
+```{r tab-svyby-desempleo-sexo, tab.cap="Proporción en condición de desempleo por sexo"}
+tab_sex_desempleo <- svyby(formula = ~desempleo, by = ~Sex,
+                           design  = diseno %>% filter(!is.na(desempleo)),
                            FUN     = svymean, na.rm=T, covmat = TRUE,
                            vartype = c("se", "ci"))
 tab_sex_desempleo %>%
   tabla_fmt()
-```
-
-```{r tab-svyby-desempleo-sexo, tab.cap="Proporción en condición de desempleo por sexo"}
 ```
 
 Para calcular la estimación de la diferencia de proporciones junto con sus errores estándares, se realizarán los siguientes pasos:
@@ -727,18 +700,13 @@ de lo que se concluye que, la estimación del contraste es 0.04 (4%) con un erro
 
 Otro ejercicio que se puede realizar en una encuesta de hogares es ahora estimar la proporción de desempleados por región. Para la realización de este ejercicio, se seguirán los pasos de los dos ejemplos anteriores, presentada en la Tabla \@ref(tab:tab-svyby-desempleo-region):
 
-```{r}
-
-tab_region_desempleo <- svyby(formula =  ~desempleo, by = ~Region, 
-
-                              design  = diseno %>% filter(!is.na(desempleo)) , 
+```{r tab-svyby-desempleo-region, tab.cap="Proporción en condición de desempleo por región"}
+tab_region_desempleo <- svyby(formula =  ~desempleo, by = ~Region,
+                              design  = diseno %>% filter(!is.na(desempleo)),
                               FUN     = svymean, na.rm=T, covmat = TRUE,
                               vartype = c("se", "ci"))
 tab_region_desempleo %>%
   tabla_fmt()
-```
-
-```{r tab-svyby-desempleo-region, tab.cap="Proporción en condición de desempleo por región"}
 ```
 
 Ahora, el interés es realizar los contrastes siguientes para desempleo: 
@@ -785,18 +753,13 @@ svycontrast(tab_region_desempleo, list(
 
 Por último, repitiendo el contraste anterior y los pasos para resolverlo, pero ahora utilizando la variable pobreza se tiene, presentada en la Tabla \@ref(tab:tab-svyby-pobreza-region):
 
-```{r}
-
-tab_region_pobreza <- svyby(formula = ~pobreza, by = ~Region, 
-
-                            design = diseno %>% filter(!is.na(desempleo)) , 
+```{r tab-svyby-pobreza-region, tab.cap="Proporción en condición de pobreza por región"}
+tab_region_pobreza <- svyby(formula = ~pobreza, by = ~Region,
+                            design = diseno %>% filter(!is.na(desempleo)),
                             FUN = svymean, na.rm=T, covmat = TRUE,
                             vartype = c("se", "ci"))
 tab_region_pobreza %>%
   tabla_fmt()
-```
-
-```{r tab-svyby-pobreza-region, tab.cap="Proporción en condición de pobreza por región"}
 ```
 
 El interés se centra en realizar los contrastes siguientes para pobreza: 
@@ -951,6 +914,7 @@ El primer paso consiste en cargar el archivo geoespacial y verificar que las reg
 ```{r mapas-setup, echo=TRUE, eval=TRUE}
 library(sf)
 library(tmap)
+tmap_mode("plot")
 shapeBigCity <- read_sf("Data/shapeBigCity/BigCity.shp")
 ```
 

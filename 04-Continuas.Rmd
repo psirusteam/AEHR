@@ -653,7 +653,7 @@ sub_Rural %>%
   tabla_fmt()
 ```
 
-Obteniendo nuevamente que hay más mujeres que hombres. Ahora bien, otro análisis de interés es estimar la razón de gastos pero solo en la población femenina. A continuación, se presentan los códigos computacionales, como se muestra en la Tabla \\@ref(tab:tab-razon-gasto-ingreso-mujer).
+Obteniendo nuevamente que hay más mujeres que hombres. Ahora bien, otro análisis de interés es estimar la razón de gastos pero solo en la población femenina. A continuación, se presentan los códigos computacionales, como se muestra en la Tabla \@ref(tab:tab-razon-gasto-ingreso-mujer).
 
 ```{r}
 sub_Urbano <- diseno %>% filter(Zone == "Urban")
@@ -773,7 +773,7 @@ Cuando las variables son categóricas u ordinales, se deben emplear otras medida
 
 El paquete `survey` cuenta con la función `svyvar()` que permite obtener matrices de covarianzas ponderadas, a partir de las cuales se puede calcular la correlación. Otra opción más directa es usar `svycor()` de paquetes complementarios como `jtools` o implementar el cálculo manualmente.
 
-Ejemplo con ingreso y gasto de los hogares, presentada en la Tabla \\@ref(tab:tab-covarianza):
+Ejemplo con ingreso y gasto de los hogares, presentada en la Tabla \@ref(tab:tab-covarianza):
 
 ```{r}
 svy_cov <- svyvar(~Income + Expenditure, design = diseno)
@@ -876,7 +876,7 @@ $$
 
 ### Ejemplo aplicado en `R`
 
-En encuestas complejas, estas pruebas se implementan con la función `svyttest()` del paquete `survey`, que incorpora automáticamente los ajustes del diseño muestral, como se muestra en la Tabla \\@ref(tab:tab-ttest-sexo).
+En encuestas complejas, estas pruebas se implementan con la función `svyttest()` del paquete `survey`, que incorpora automáticamente los ajustes del diseño muestral, como se muestra en la Tabla \@ref(tab:tab-ttest-sexo).
 
 **Ejemplo 1. Diferencia de ingresos por sexo (población total):**
 
@@ -904,7 +904,7 @@ A partir de lo anterior, con un 95% de confianza no existe evidencia estadístic
 
 **Ejemplo 2. Diferencia de ingresos por sexo en zona urbana:**
 
-Otra hipótesis que puede evaluarse es si los ingresos medios de los hogares difieren según el sexo del jefe del hogar dentro del área urbana, como se muestra en la Tabla \\@ref(tab:tab-ttest-sexo-urbano).
+Otra hipótesis que puede evaluarse es si los ingresos medios de los hogares difieren según el sexo del jefe del hogar dentro del área urbana, como se muestra en la Tabla \@ref(tab:tab-ttest-sexo-urbano).
 
 ```{r, eval=TRUE}
 sub_Urbano <- diseno %>%  filter(Zone == "Urban")
@@ -928,7 +928,7 @@ df_res %>%
   tabla_fmt()
 ```
 
-Nuevamente no se rechaza $H_0$, lo que indica ausencia de diferencias significativas en el ingreso medio por sexo en la zona urbana, como se muestra en la Tabla \\@ref(tab:tab-ttest-sexo-mayores).
+Nuevamente no se rechaza $H_0$, lo que indica ausencia de diferencias significativas en el ingreso medio por sexo en la zona urbana, como se muestra en la Tabla \@ref(tab:tab-ttest-sexo-mayores).
 
 
 **Ejemplo 3. Diferencia de ingresos por sexo, restringido a mayores de 18 años:**
@@ -1009,7 +1009,7 @@ que de forma matricial queda de la siguiente manera:
 
 Como se puede observar, en este caso el vector de contraste es $\left[1,\,-1,\,0,\,0,\,0\right]$.
 
-Ahora bien, para realizar el procesos de la construcción del estimador del contraste y su varianza estimada paso a paso se inicia con calcular las medias estimadas por región con la función `svyby` como se muestra a continuación, presentada en la Tabla \\@ref(tab:tab-prom-region):
+Ahora bien, para realizar el procesos de la construcción del estimador del contraste y su varianza estimada paso a paso se inicia con calcular las medias estimadas por región con la función `svyby` como se muestra a continuación, presentada en la Tabla \@ref(tab:tab-prom-region):
 
 ```{r, eval =T}
 prom_region <- svyby(formula = ~Income,
@@ -1035,7 +1035,7 @@ La función `svyby()` permite aplicar una función, en este caso la media (`svym
 552.4 - 625.8
 ```
 
-El paso siguiente es calcular la matriz de varianzas y covarianzas y de allí extraer las varianzas y covarianzas de las regiones Norte y Sur, presentada en la Tabla \\@ref(tab:tab-vcov-region):
+El paso siguiente es calcular la matriz de varianzas y covarianzas y de allí extraer las varianzas y covarianzas de las regiones Norte y Sur, presentada en la Tabla \@ref(tab:tab-vcov-region):
 
 
 ```{r,contr1_var,eval=T}
@@ -1061,7 +1061,7 @@ $se\left(\hat{\bar{y}}_{Norte}-\hat{\bar{y}}_{Sur}\right)=\sqrt{var\left(\hat{\b
 sqrt(2650 + 3460 - 2*0)
 ```
 
-Finalmente, la función `svycontrast()` nos devuelve el contraste estimado y su error estándar. Los argumentos de esta función son los promedios de los ingresos estimados (`stat`) y las constantes de contraste (`contrasts`), como se muestra en la Tabla \\@ref(tab:tab-contraste-ns).
+Finalmente, la función `svycontrast()` nos devuelve el contraste estimado y su error estándar. Los argumentos de esta función son los promedios de los ingresos estimados (`stat`) y las constantes de contraste (`contrasts`), como se muestra en la Tabla \@ref(tab:tab-contraste-ns).
 
 
 ```{r}
@@ -1098,7 +1098,7 @@ $$
 \end{array}\right]
 $$
 
-A continuación, aplicamos la función `svycontrast()` en R para estimar los contrastes definidos anteriormente, presentada en la Tabla \\@ref(tab:tab-contraste-regiones):
+A continuación, aplicamos la función `svycontrast()` en R para estimar los contrastes definidos anteriormente, presentada en la Tabla \@ref(tab:tab-contraste-regiones):
 
 ```{r, eval=TRUE}
 res <- svycontrast(stat = prom_region,
@@ -1126,7 +1126,7 @@ df_con %>%
 
 De lo cual se puede concluir que, las regiones con los ingresos medios de los hogares más similares son la región sur y la región centro.
 
-También es posible construir contraste en variables que estén asociadas. Por ejemplo, Ingreso por Sexo. Como se hizo en el ejemplo anterior, se inicia con el promedio estimado por sexo, como se muestra en la Tabla \\@ref(tab:tab-prom-sexo).
+También es posible construir contraste en variables que estén asociadas. Por ejemplo, Ingreso por Sexo. Como se hizo en el ejemplo anterior, se inicia con el promedio estimado por sexo, como se muestra en la Tabla \@ref(tab:tab-prom-sexo).
 
 ```{r, eval=T}
 prom_sexo <- svyby(formula = ~Income,
@@ -1150,7 +1150,7 @@ prom_sexo %>%
 El contraste a estimar es:
 
 $$ \bar{Y}_{F} - \bar{Y}_{M}$$
-Por tanto, usando la función `svycontrast()` se obtiene el contraste estimado, presentada en la Tabla \\@ref(tab:tab-contraste-sexo):
+Por tanto, usando la función `svycontrast()` se obtiene el contraste estimado, presentada en la Tabla \@ref(tab:tab-contraste-sexo):
 
 ```{r}
 res <- svycontrast(stat = prom_sexo,
@@ -1175,7 +1175,7 @@ Obteniendo como resultado que, en promedio, los hombres obtienen 28.3 unidades m
 
 Otra posibilidad es obtener resultados agregados, por ejemplo:
 
-$\hat{\bar{y}}_{Norte}+\hat{\bar{y}}_{Sur} +\hat{\bar{y}}_{Centro}$, como se muestra en la Tabla \\@ref(tab:tab-total-region).
+$\hat{\bar{y}}_{Norte}+\hat{\bar{y}}_{Sur} +\hat{\bar{y}}_{Centro}$, como se muestra en la Tabla \@ref(tab:tab-total-region).
 
 ```{r}
 res <- svyby(~Income,  ~Region,
@@ -1198,7 +1198,7 @@ $$
 1 & 1 & 1 & 0 & 0
 \end{array}\right]
 $$
-el procedimiento en R es, presentada en la Tabla \\@ref(tab:tab-contraste-ncs):
+el procedimiento en R es, presentada en la Tabla \@ref(tab:tab-contraste-ncs):
 
 ```{r, eval=T}
 ag_res <- svycontrast(stat = res,
@@ -1226,7 +1226,7 @@ Por otro lado, si se desean obtener los promedios por categorías. Por ejemplo:
 $$
 \hat{\bar{y}}_{Edad} = \frac{1}{k}\sum_{k=1}^K\hat{\bar{y}}_{k}
 $$
-donde $K$ es el número de categorías de la variable. En R se hace de la siguiente manera, presentada en la Tabla \\@ref(tab:tab-prom-edad):
+donde $K$ es el número de categorías de la variable. En R se hace de la siguiente manera, presentada en la Tabla \@ref(tab:tab-prom-edad):
 
 ```{r, eval=TRUE}
 prom_edad <- svyby(formula = ~Income,
@@ -1251,7 +1251,7 @@ $$
 \end{array}\right]
 $$
 
-El procedimiento en R es, presentada en la Tabla \\@ref(tab:tab-contraste-edad):
+El procedimiento en R es, presentada en la Tabla \@ref(tab:tab-contraste-edad):
 
 ```{r, eval=TRUE}
 res <- svycontrast(stat = prom_edad,
@@ -1275,7 +1275,7 @@ df_res %>%
   tabla_fmt()
 ```
 
-Puesto que los contrastes, como ya se mencionó, es una función lineal de parámetros, se puede también realizar contraste con parámetros tipo razón. Por ejemplo, la relación de gastos contra ingresos por sexo. A continuación, se muestran los códigos computacionales, presentada en la Tabla \\@ref(tab:tab-razon-ingreso-gasto-sexo):
+Puesto que los contrastes, como ya se mencionó, es una función lineal de parámetros, se puede también realizar contraste con parámetros tipo razón. Por ejemplo, la relación de gastos contra ingresos por sexo. A continuación, se muestran los códigos computacionales, presentada en la Tabla \@ref(tab:tab-razon-ingreso-gasto-sexo):
 
 ```{r,c2, echo=TRUE, eval=T}
 razon_sexo <- svyby( formula = ~Income,
@@ -1303,7 +1303,7 @@ razon_sexo_df %>%
   tabla_fmt()
 ```
 
-Cuya estimación de contraste sería, presentada en la Tabla \\@ref(tab:tab-contraste-razon-sexo):
+Cuya estimación de contraste sería, presentada en la Tabla \@ref(tab:tab-contraste-razon-sexo):
 
 ```{r}
 res <- svycontrast(stat = razon_sexo,

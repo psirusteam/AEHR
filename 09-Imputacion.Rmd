@@ -168,7 +168,7 @@ ggplot(dat_plot2, aes(x = Caso, y = Expenditure)) +
 
 La Figura \@ref(fig:fig-mar-densidad-ingreso) muestra el cambio distribucional en el ingreso bajo MAR. A diferencia del esquema MCAR, las curvas difieren notablemente, en especial al desagregar por sexo:
 
-```{r fig-mar-densidad-ingreso, MAR2, fig.cap="Densidad del ingreso: muestra completa versus esquema MAR, total y por sexo", echo=TRUE, eval=TRUE}
+```{r fig-mar-densidad-ingreso, fig.cap="Densidad del ingreso: muestra completa versus esquema MAR, total y por sexo", echo=TRUE, eval=TRUE}
 p1 <- ggplot(dat_plot2, aes(x = Income, fill = Caso)) +
   geom_density(alpha = 0.3) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -185,7 +185,7 @@ p1 / p2
 
 La Figura \@ref(fig:fig-mar-densidad-gasto) presenta el mismo análisis para el gasto, mostrando un cambio distribucional entre hombres y mujeres:
 
-```{r fig-mar-densidad-gasto, MAR3, fig.cap="Densidad del gasto: muestra completa versus esquema MAR, total y por sexo", echo=TRUE, eval=TRUE}
+```{r fig-mar-densidad-gasto, fig.cap="Densidad del gasto: muestra completa versus esquema MAR, total y por sexo", echo=TRUE, eval=TRUE}
 p1 <- ggplot(dat_plot2, aes(x = Expenditure, fill = Caso)) +
   geom_density(alpha = 0.3) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -217,7 +217,7 @@ dat_plot3 <- bind_rows(
 
 La Figura \@ref(fig:fig-mnar-densidad-ingreso) ilustra el efecto más severo del esquema MNAR sobre el ingreso. La línea azul indica la media de la submuestra MNAR, claramente desplazada hacia la izquierda respecto a la media de la muestra completa (línea roja):
 
-```{r fig-mnar-densidad-ingreso, MNAR1, fig.cap="Densidad del ingreso: muestra completa versus esquema MNAR. La línea roja indica la media de la muestra completa; la línea azul, la de la submuestra MNAR.", echo=TRUE, eval=TRUE}
+```{r fig-mnar-densidad-ingreso, fig.cap="Densidad del ingreso: muestra completa versus esquema MNAR. La línea roja indica la media de la muestra completa; la línea azul, la de la submuestra MNAR.", echo=TRUE, eval=TRUE}
 ggplot(dat_plot3, aes(x = Income, fill = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -227,7 +227,7 @@ ggplot(dat_plot3, aes(x = Income, fill = Caso)) +
 
 La Figura \@ref(fig:fig-mnar-densidad-gasto) presenta el mismo efecto para la variable gasto:
 
-```{r fig-mnar-densidad-gasto, MNAR2, fig.cap="Densidad del gasto: muestra completa versus esquema MNAR", echo=TRUE, eval=TRUE}
+```{r fig-mnar-densidad-gasto, fig.cap="Densidad del gasto: muestra completa versus esquema MNAR", echo=TRUE, eval=TRUE}
 ggplot(dat_plot3, aes(x = Expenditure, fill = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -237,7 +237,7 @@ ggplot(dat_plot3, aes(x = Expenditure, fill = Caso)) +
 
 La Figura \@ref(fig:fig-mnar-boxplot-zona) desagrega el efecto del esquema MNAR por zona y sexo, evidenciando cambios distribucionales importantes en todos los subgrupos:
 
-```{r fig-mnar-boxplot-zona, MNAR3, fig.cap="Distribución del ingreso por zona y sexo: muestra completa versus esquema MNAR", echo=TRUE, eval=TRUE}
+```{r fig-mnar-boxplot-zona, fig.cap="Distribución del ingreso por zona y sexo: muestra completa versus esquema MNAR", echo=TRUE, eval=TRUE}
 ggplot(dat_plot3, aes(x = Caso, y = Income)) +
   geom_hline(yintercept = mean(encuesta$Income), col = "red") +
   geom_boxplot() +
@@ -308,7 +308,7 @@ dat_plot4 <- tidyr::gather(
 )
 ```
 
-```{r fig-media-inc-densidad, Media_1, fig.cap="Densidad del ingreso original versus imputado por la media no condicional", echo=TRUE, eval=TRUE}
+```{r fig-media-inc-densidad, fig.cap="Densidad del ingreso original versus imputado por la media no condicional", echo=TRUE, eval=TRUE}
 ggplot(dat_plot4, aes(x = Income2, fill = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -474,7 +474,7 @@ dat_plot6 <- tidyr::gather(
 )
 ```
 
-```{r fig-hotdeck-densidad, hot_deck_1, fig.cap="Densidad del ingreso original versus imputado por hot-deck", echo=TRUE, eval=TRUE}
+```{r fig-hotdeck-densidad, fig.cap="Densidad del ingreso original versus imputado por hot-deck", echo=TRUE, eval=TRUE}
 ggplot(dat_plot6, aes(x = Income2, fill = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -627,7 +627,7 @@ ggplot(dat_plot7, aes(x = Income2, fill = Caso)) +
   geom_vline(xintercept = mean(encuesta$Income_imp), col = "blue")
 ```
 
-```{r fig-regresion-boxplot, regresion_2, fig.cap="Boxplots del ingreso original e imputado por regresión, por zona y sexo", echo=TRUE, eval=TRUE}
+```{r fig-regresion-boxplot, fig.cap="Boxplots del ingreso original e imputado por regresión, por zona y sexo", echo=TRUE, eval=TRUE}
 ggplot(dat_plot7, aes(x = Caso, y = Income2)) +
   geom_hline(yintercept = mean(encuesta$Income), col = "red") +
   geom_boxplot() +
@@ -737,14 +737,14 @@ dat_plot8 <- tidyr::gather(
   key = "Caso", value = "Income2", -Zone, -Sex
 )
 ```
-```{r fig-knn-densidad, Vecino_1, fig.cap="Densidad del ingreso original versus imputado por KNN", echo=TRUE, eval=TRUE}
+```{r fig-knn-densidad, fig.cap="Densidad del ingreso original versus imputado por KNN", echo=TRUE, eval=TRUE}
 ggplot(dat_plot8, aes(x = Income2, fill = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
   geom_vline(xintercept = mean(encuesta$Income),     col = "red") +
   geom_vline(xintercept = mean(encuesta$Income_imp), col = "blue")
 ```
-```{r fig-knn-boxplot, Vecino_2, fig.cap="Boxplots del ingreso original e imputado por KNN, por zona y sexo", echo=TRUE, eval=TRUE}
+```{r fig-knn-boxplot, fig.cap="Boxplots del ingreso original e imputado por KNN, por zona y sexo", echo=TRUE, eval=TRUE}
 ggplot(dat_plot8, aes(x = Caso, y = Income2)) +
   geom_hline(yintercept = mean(encuesta$Income), col = "red") +
   geom_boxplot() +
@@ -877,15 +877,23 @@ ggplot(dat_plot9, aes(x = Caso, y = Income2)) +
 
 La imputación múltiple [@rubin1987multiple] aborda el problema de los datos faltantes generando $M > 1$ conjuntos de valores plausibles para las observaciones no observadas. Cada conjunto corresponde a una realización del modelo de imputación, de modo que la incertidumbre asociada a los valores faltantes queda explícitamente representada en la variabilidad entre imputaciones.
 
-Suponga que existe un conjunto de $n$ observaciones que relaciona las variables $X$ e $Y$ mediante el siguiente modelo de regresión sin intercepto:
+En este enfoque, el objetivo es aproximar la distribución condicional de los datos faltantes dado la información observada, es decir,
 
-$$y_i = \beta x_i + \varepsilon_i$$
+$$P(Y_{NoObs} \mid Y_{Obs}, X),$$
+donde $Y_{Obs}$ el subconjunto de $n_1$ valores observados de $Y$, y $Y_{NoObs}$ el subconjunto de $n_0 = n - n_1$ valores no observados. Se asume que la covariable $X$ es completamente observada.
 
-para $i = 1, \ldots, n$, con $\varepsilon_i \sim N(0, \sigma^2)$.
+Para ilustrar el procedimiento, se considera un esquema generador de datos donde las variables X e Y se relacionan mediante el siguiente modelo de regresión sin intercepto:
 
-> **⚠ Nota Giovany:** El modelo se especifica sin intercepto ($\beta x_i$, no $\beta_0 + \beta_1 x_i$), lo que es coherente con el código de simulación y estimación que utiliza `lm(y ~ 0 + x)`. Se recomienda verificar que esta es la especificación deseada, ya que en la mayoría de contextos aplicados se incluye un intercepto.
+$$
+y_i = \beta x_i + \varepsilon_i,
+\qquad
+\varepsilon_i \sim N(0,\sigma^2),
+\qquad
+i=1,\ldots,n.
+$$
+Este modelo se utiliza únicamente como mecanismo generador de datos para la simulación y la ilustración del método. En el marco de la imputación múltiple, el modelo de imputación tiene carácter auxiliar y busca aproximar la distribución condicional de los datos faltantes dado la información observada, independientemente de que el modelo sustantivo incluya o no intercepto.
 
-Sea $Y_{Obs}$ el subconjunto de $n_1$ valores observados de $Y$, y $Y_{NoObs}$ el subconjunto de $n_0 = n - n_1$ valores no observados. Se asume que la covariable $X$ es completamente observada.
+En imputación múltiple, el modelo de imputación no tiene por qué coincidir con el modelo de análisis final. Su función es aproximar adecuadamente la distribución de los datos faltantes condicional a la información disponible, de forma que la variabilidad entre imputaciones refleje correctamente la incertidumbre asociada al proceso de imputación.
 
 ### Estimadores de la imputación múltiple
 
@@ -902,8 +910,6 @@ donde:
 $$\bar{U} = \frac{1}{M} \sum_{m=1}^{M} \widehat{Var}(\hat{\beta}_m)$$
 
 $$B = \frac{1}{M-1} \sum_{m=1}^{M} \left(\hat{\beta}_m - \bar{\hat{\beta}}\right)^2$$
-
-> **⚠ Ajuste de Giovany:** En el documento original, $B$ estaba escrito sin el cuadrado: $B = \frac{1}{M-1}\sum(\hat{\beta}_m - \bar{\hat{\beta}})$. Esto es dimensionalmente inconsistente, ya que $B$ debe ser una varianza para que pueda sumarse con $\bar{U}$ en la expresión de $\hat{V}$.
 
 ### Implementación mediante bootstrap
 
@@ -1058,7 +1064,7 @@ dat_plot10 <- tidyr::gather(
 )
 ```
 
-```{r fig-vp-ingreso-densidad, Bootstrap1, fig.cap="Distribución de los 10 valores plausibles del ingreso versus la distribución del ingreso completo (línea negra)", echo=TRUE, eval=TRUE}
+```{r fig-vp-ingreso-densidad, fig.cap="Distribución de los 10 valores plausibles del ingreso versus la distribución del ingreso completo (línea negra)", echo=TRUE, eval=TRUE}
 ggplot(dat_plot10, aes(x = Income2, col = Caso)) +
   geom_density(alpha = 0.2) + theme_bw() +
   theme(legend.position = "bottom") +
@@ -1079,7 +1085,7 @@ dat_plot11 <- tidyr::gather(
   mutate(prop = n / sum(n))
 ```
 
-```{r fig-vp-empleo-frecuencias, Bootstrap2, fig.cap="Proporciones de los valores plausibles para la variable empleo comparadas con la variable completa", echo=TRUE, eval=TRUE}
+```{r fig-vp-empleo-frecuencias, fig.cap="Proporciones de los valores plausibles para la variable empleo comparadas con la variable completa", echo=TRUE, eval=TRUE}
 ggplot(dat_plot11,
        aes(x = Employment2, y = prop, fill = Caso)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.5)) +

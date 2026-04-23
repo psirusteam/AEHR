@@ -1,6 +1,7 @@
 knitr
 printr
-ggplot2
+styler
+gt
 dplyr
 magrittr
 TeachingSampling
@@ -8,8 +9,8 @@ Matrix
 survival
 survey
 srvyr
-styler
 tidyverse
+ggplot2
 tibble
 tidyr
 readr
@@ -19,5 +20,5 @@ forcats
 lubridate
 patchwork
 janitor
-gt
-kableExtra
+flextable
+officer

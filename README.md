@@ -1,8 +1,19 @@
 # Análisis de encuestas con R
 
-Este es el repositorio del manual de Análisis de Encuestas con R, escrito por Andrés Gutiérrez, Cristian Téllez, Stalin Guerrero y Giovany Babativa.
+**Autores:**  
+Andrés Gutiérrez · Giovany Babativa-Márquez · Stalyn Guerrero · Cristian Téllez  
+*Comisión Económica para América Latina y el Caribe (CEPAL)*
 
+La versión online está disponible en: <https://jgbabativam.github.io/EncuR/>
 
+[![Creative Commons BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-Versión temporal: https://jgbabativam.github.io/EncuR/
+---
 
+## Descripción
+
+Este repositorio contiene el código fuente del libro ***Análisis de encuestas con R***, una guía práctica para el análisis estadístico de encuestas de hogares usando R. El libro cubre desde los fundamentos del muestreo complejo hasta modelos de regresión, modelos multinivel e imputación múltiple, con ejemplos basados en datos reales de encuestas latinoamericanas.
+
+## Licencia
+
+Este trabajo está licenciado bajo una [Licencia Internacional Creative Commons Atribución-NoComercial-CompartirIgual 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).

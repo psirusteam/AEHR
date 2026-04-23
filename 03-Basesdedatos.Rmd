@@ -98,6 +98,10 @@ library("tidyverse")
 library("haven")
 ```
 
+```{r, include=FALSE}
+source("_tabla_helper.R")
+```
+
 Es importante resaltar que el ecosistema `tidyverse` incluye por defecto los siguientes paquetes principales: `ggplot2`, `dplyr`, `tidyr`, `readr`, `tibble`, `stringr`, `forcats`, y `purrr`. Paquetes afines como `haven`, `lubridate`, `readxl`, o `DBI` forman parte del ecosistema `tidyverse`, pero no se cargan automáticamente con `library(tidyverse)` para mantener el entorno más liviano.
 
 ## Creación de proyectos en `R`
