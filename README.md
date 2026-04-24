@@ -4,7 +4,7 @@
 Andrés Gutiérrez · Giovany Babativa-Márquez · Stalyn Guerrero · Cristian Téllez  
 *Comisión Económica para América Latina y el Caribe (CEPAL)*
 
-La versión online está disponible en: <https://>
+La versión online está disponible en: <https://psirusteam.github.io/AEHR/>
 
 [![Creative Commons BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
