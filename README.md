@@ -12,7 +12,7 @@ La versión online está disponible en: <https://jgbabativam.github.io/EncuR/>
 
 ## Descripción
 
-Este repositorio contiene el código fuente del libro ***Análisis de encuestas con R***, una guía práctica para el análisis estadístico de encuestas de hogares usando R. El libro cubre desde los fundamentos del muestreo complejo hasta modelos de regresión, modelos multinivel e imputación múltiple, con ejemplos basados en datos reales de encuestas latinoamericanas.
+Este repositorio contiene el código fuente del libro ***Análisis de encuestas de hogares con R***, una guía práctica para el análisis estadístico de encuestas de hogares usando R. El libro cubre desde los fundamentos del muestreo complejo hasta modelos de regresión, modelos multinivel e imputación múltiple, con ejemplos basados en datos reales de encuestas latinoamericanas.
 
 ## Licencia
 

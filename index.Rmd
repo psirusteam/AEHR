@@ -18,7 +18,7 @@ header-includes:
   - \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
   - \usepackage{hyperref}
 github-repo: psirusteam/2021ASDA
-description: "Este es el repositorio del libro *Análisis de encuestas con R*."
+description: "Este es el repositorio del libro *Análisis de encuestas de hogares con R*."
 knit: "bookdown::render_book"
 linkcolor: blue
 output:
@@ -50,4 +50,4 @@ output:
 
 La versión online de este libro está licenciada bajo una [Licencia Internacional de Creative Commons para compartir con atribución no comercial 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/). 
 
-Este libro es el resultado de un compendio de las experiencias internacionales prácticas adquiridas por el autor como Experto Regional en Estadísticas Sociales de la CEPAL.
+Este libro es el resultado de un compendio de las experiencias internacionales prácticas adquiridas por los autores en su asesoría a los países de América Latina y el Caribe desde la División de Estadísticas de la CEPAL.

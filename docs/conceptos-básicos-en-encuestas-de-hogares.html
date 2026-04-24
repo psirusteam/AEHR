@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Conceptos básicos en encuestas de hogares | Análisis de encuestas con R</title>
-  <meta name="description" content="Este es el repositorio del libro Análisis de encuestas con R." />
+  <meta name="description" content="Este es el repositorio del libro Análisis de encuestas de hogares con R." />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Conceptos básicos en encuestas de hogares | Análisis de encuestas con R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Este es el repositorio del libro Análisis de encuestas con R." />
+  <meta property="og:description" content="Este es el repositorio del libro Análisis de encuestas de hogares con R." />
   <meta name="github-repo" content="psirusteam/2021ASDA" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 2 Conceptos básicos en encuestas de hogares | Análisis de encuestas con R" />
   
-  <meta name="twitter:description" content="Este es el repositorio del libro Análisis de encuestas con R." />
+  <meta name="twitter:description" content="Este es el repositorio del libro Análisis de encuestas de hogares con R." />
   
 
 <meta name="author" content="Andrés Gutiérrez, Giovany Babativa-Márquez, Stalyn Guerrero, Cristian Téllez" />
 
 
-<meta name="date" content="2026-04-23" />
+<meta name="date" content="2026-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,6 +55,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -128,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -159,121 +161,121 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Análisis de encuestas con R</a></li>
+<li><a href="./">Análisis de encuestas de hogares con R</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
 <li class="chapter" data-level="1" data-path="cap-intro.html"><a href="cap-intro.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="motivación.html"><a href="motivación.html"><i class="fa fa-check"></i><b>1.1</b> Motivación</a></li>
-<li class="chapter" data-level="1.2" data-path="contexto-metodológico-y-estado-del-arte.html"><a href="contexto-metodológico-y-estado-del-arte.html"><i class="fa fa-check"></i><b>1.2</b> Contexto metodológico y estado del arte</a></li>
-<li class="chapter" data-level="1.3" data-path="usar-r-para-el-análisis-de-encuestas.html"><a href="usar-r-para-el-análisis-de-encuestas.html"><i class="fa fa-check"></i><b>1.3</b> Usar R para el análisis de encuestas</a></li>
-<li class="chapter" data-level="1.4" data-path="organización.html"><a href="organización.html"><i class="fa fa-check"></i><b>1.4</b> Organización</a>
+<li class="chapter" data-level="1.1" data-path="02-Conceptos.html"><a href="#motivaci%C3%B3n"><i class="fa fa-check"></i><b>1.1</b> Motivación</a></li>
+<li class="chapter" data-level="1.2" data-path="02-Conceptos.html"><a href="#contexto-metodol%C3%B3gico-y-estado-del-arte"><i class="fa fa-check"></i><b>1.2</b> Contexto metodológico y estado del arte</a></li>
+<li class="chapter" data-level="1.3" data-path="02-Conceptos.html"><a href="#usar-r-para-el-an%C3%A1lisis-de-encuestas"><i class="fa fa-check"></i><b>1.3</b> Usar R para el análisis de encuestas</a></li>
+<li class="chapter" data-level="1.4" data-path="02-Conceptos.html"><a href="#organizaci%C3%B3n"><i class="fa fa-check"></i><b>1.4</b> Organización</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="organización.html"><a href="organización.html#parte-1-fundamentos-del-diseño-muestral"><i class="fa fa-check"></i><b>1.4.1</b> Parte 1: Fundamentos del diseño muestral</a></li>
-<li class="chapter" data-level="1.4.2" data-path="organización.html"><a href="organización.html#parte-2-elementos-computacionales"><i class="fa fa-check"></i><b>1.4.2</b> Parte 2: Elementos computacionales</a></li>
-<li class="chapter" data-level="1.4.3" data-path="organización.html"><a href="organización.html#parte-3-estimación-de-parámetros-descriptivos"><i class="fa fa-check"></i><b>1.4.3</b> Parte 3: Estimación de parámetros descriptivos</a></li>
-<li class="chapter" data-level="1.4.4" data-path="organización.html"><a href="organización.html#parte-4-modelamiento-estadístico"><i class="fa fa-check"></i><b>1.4.4</b> Parte 4: Modelamiento estadístico</a></li>
-<li class="chapter" data-level="1.4.5" data-path="organización.html"><a href="organización.html#parte-5-imputación"><i class="fa fa-check"></i><b>1.4.5</b> Parte 5: Imputación</a></li>
+<li class="chapter" data-level="1.4.1" data-path="02-Conceptos.html"><a href="#parte-1-fundamentos-del-dise%C3%B1o-muestral"><i class="fa fa-check"></i><b>1.4.1</b> Parte 1: Fundamentos del diseño muestral</a></li>
+<li class="chapter" data-level="1.4.2" data-path="organización.html"><a href="organización.html"><i class="fa fa-check"></i><b>1.4.2</b> Parte 2: Elementos computacionales</a></li>
+<li class="chapter" data-level="1.4.3" data-path="02-Conceptos.html"><a href="#parte-3-estimaci%C3%B3n-de-par%C3%A1metros-descriptivos"><i class="fa fa-check"></i><b>1.4.3</b> Parte 3: Estimación de parámetros descriptivos</a></li>
+<li class="chapter" data-level="1.4.4" data-path="02-Conceptos.html"><a href="#parte-4-modelamiento-estad%C3%ADstico"><i class="fa fa-check"></i><b>1.4.4</b> Parte 4: Modelamiento estadístico</a></li>
+<li class="chapter" data-level="1.4.5" data-path="02-Conceptos.html"><a href="#parte-5-imputaci%C3%B3n"><i class="fa fa-check"></i><b>1.4.5</b> Parte 5: Imputación</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="justificación-de-este-libro.html"><a href="justificación-de-este-libro.html"><i class="fa fa-check"></i><b>1.5</b> Justificación de este libro</a></li>
+<li class="chapter" data-level="1.5" data-path="02-Conceptos.html"><a href="#justificaci%C3%B3n-de-este-libro"><i class="fa fa-check"></i><b>1.5</b> Justificación de este libro</a></li>
 <li class="chapter" data-level="1.6" data-path="perfil-del-lector.html"><a href="perfil-del-lector.html"><i class="fa fa-check"></i><b>1.6</b> Perfil del lector</a></li>
 <li class="chapter" data-level="1.7" data-path="estructura.html"><a href="estructura.html"><i class="fa fa-check"></i><b>1.7</b> Estructura del libro</a>
 <ul>
-<li class="chapter" data-level="1.7.1" data-path="estructura.html"><a href="estructura.html#capítulo-2-conceptos-básicos-en-encuestas-de-hogares"><i class="fa fa-check"></i><b>1.7.1</b> Capítulo 2: Conceptos básicos en encuestas de hogares</a></li>
-<li class="chapter" data-level="1.7.2" data-path="estructura.html"><a href="estructura.html#capítulo-3-del-manejo-de-datos-al-análisis-de-encuestas-complejas-en-r"><i class="fa fa-check"></i><b>1.7.2</b> Capítulo 3: Del manejo de datos al análisis de encuestas complejas en R</a></li>
-<li class="chapter" data-level="1.7.3" data-path="estructura.html"><a href="estructura.html#capítulo-4-análisis-de-variables-continuas"><i class="fa fa-check"></i><b>1.7.3</b> Capítulo 4: Análisis de variables continuas</a></li>
-<li class="chapter" data-level="1.7.4" data-path="estructura.html"><a href="estructura.html#capítulo-5-análisis-de-variables-categóricas"><i class="fa fa-check"></i><b>1.7.4</b> Capítulo 5: Análisis de variables categóricas</a></li>
-<li class="chapter" data-level="1.7.5" data-path="estructura.html"><a href="estructura.html#capítulo-6-modelos-de-regresión"><i class="fa fa-check"></i><b>1.7.5</b> Capítulo 6: Modelos de regresión</a></li>
-<li class="chapter" data-level="1.7.6" data-path="estructura.html"><a href="estructura.html#capítulo-7-modelos-lineales-generalizados"><i class="fa fa-check"></i><b>1.7.6</b> Capítulo 7: Modelos lineales generalizados</a></li>
-<li class="chapter" data-level="1.7.7" data-path="estructura.html"><a href="estructura.html#capítulo-9-procedimientos-de-imputación"><i class="fa fa-check"></i><b>1.7.7</b> Capítulo 9: Procedimientos de imputación</a></li>
+<li class="chapter" data-level="1.7.1" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-2-conceptos-b%C3%A1sicos-en-encuestas-de-hogares"><i class="fa fa-check"></i><b>1.7.1</b> Capítulo 2: Conceptos básicos en encuestas de hogares</a></li>
+<li class="chapter" data-level="1.7.2" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-3-del-manejo-de-datos-al-an%C3%A1lisis-de-encuestas-complejas-en-r"><i class="fa fa-check"></i><b>1.7.2</b> Capítulo 3: Del manejo de datos al análisis de encuestas complejas en R</a></li>
+<li class="chapter" data-level="1.7.3" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-4-an%C3%A1lisis-de-variables-continuas"><i class="fa fa-check"></i><b>1.7.3</b> Capítulo 4: Análisis de variables continuas</a></li>
+<li class="chapter" data-level="1.7.4" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-5-an%C3%A1lisis-de-variables-categ%C3%B3ricas"><i class="fa fa-check"></i><b>1.7.4</b> Capítulo 5: Análisis de variables categóricas</a></li>
+<li class="chapter" data-level="1.7.5" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-6-modelos-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>1.7.5</b> Capítulo 6: Modelos de regresión</a></li>
+<li class="chapter" data-level="1.7.6" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-7-modelos-lineales-generalizados"><i class="fa fa-check"></i><b>1.7.6</b> Capítulo 7: Modelos lineales generalizados</a></li>
+<li class="chapter" data-level="1.7.7" data-path="02-Conceptos.html"><a href="#cap%C3%ADtulo-9-procedimientos-de-imputaci%C3%B3n"><i class="fa fa-check"></i><b>1.7.7</b> Capítulo 9: Procedimientos de imputación</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="conceptos-básicos-en-encuestas-de-hogares.html"><a href="conceptos-básicos-en-encuestas-de-hogares.html"><i class="fa fa-check"></i><b>2</b> Conceptos básicos en encuestas de hogares</a>
+<li class="chapter" data-level="2" data-path="02-Conceptos.html"><a href="#conceptos-b%C3%A1sicos-en-encuestas-de-hogares"><i class="fa fa-check"></i><b>2</b> Conceptos básicos en encuestas de hogares</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="universo-de-estudio-y-población-objetivo.html"><a href="universo-de-estudio-y-población-objetivo.html"><i class="fa fa-check"></i><b>2.1</b> Universo de estudio y población objetivo</a></li>
-<li class="chapter" data-level="2.2" data-path="unidades-de-análisis.html"><a href="unidades-de-análisis.html"><i class="fa fa-check"></i><b>2.2</b> Unidades de análisis</a></li>
+<li class="chapter" data-level="2.1" data-path="02-Conceptos.html"><a href="#universo-de-estudio-y-poblaci%C3%B3n-objetivo"><i class="fa fa-check"></i><b>2.1</b> Universo de estudio y población objetivo</a></li>
+<li class="chapter" data-level="2.2" data-path="02-Conceptos.html"><a href="#unidades-de-an%C3%A1lisis"><i class="fa fa-check"></i><b>2.2</b> Unidades de análisis</a></li>
 <li class="chapter" data-level="2.3" data-path="unidades-de-muestreo.html"><a href="unidades-de-muestreo.html"><i class="fa fa-check"></i><b>2.3</b> Unidades de muestreo</a></li>
 <li class="chapter" data-level="2.4" data-path="marcos-de-muestreo.html"><a href="marcos-de-muestreo.html"><i class="fa fa-check"></i><b>2.4</b> Marcos de muestreo</a></li>
 <li class="chapter" data-level="2.5" data-path="sec-motivacion.html"><a href="sec-motivacion.html"><i class="fa fa-check"></i><b>2.5</b> Motivación</a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="sec-motivacion.html"><a href="sec-motivacion.html#la-importancia-de-considerar-el-diseño-muestral"><i class="fa fa-check"></i><b>2.5.1</b> La importancia de considerar el diseño muestral</a></li>
+<li class="chapter" data-level="2.5.1" data-path="02-Conceptos.html"><a href="#la-importancia-de-considerar-el-dise%C3%B1o-muestral"><i class="fa fa-check"></i><b>2.5.1</b> La importancia de considerar el diseño muestral</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="parámetros-y-estimadores.html"><a href="parámetros-y-estimadores.html"><i class="fa fa-check"></i><b>2.6</b> Parámetros y estimadores</a>
+<li class="chapter" data-level="2.6" data-path="02-Conceptos.html"><a href="#par%C3%A1metros-y-estimadores"><i class="fa fa-check"></i><b>2.6</b> Parámetros y estimadores</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="parámetros-y-estimadores.html"><a href="parámetros-y-estimadores.html#ajustes-adicionales-de-los-pesos"><i class="fa fa-check"></i><b>2.6.1</b> Ajustes adicionales de los pesos</a></li>
+<li class="chapter" data-level="2.6.1" data-path="parámetros-y-estimadores.html"><a href="parámetros-y-estimadores.html"><i class="fa fa-check"></i><b>2.6.1</b> Ajustes adicionales de los pesos</a></li>
 <li class="chapter" data-level="2.6.2" data-path="parámetros-y-estimadores.html"><a href="parámetros-y-estimadores.html#importancia-de-los-ajustes"><i class="fa fa-check"></i><b>2.6.2</b> Importancia de los ajustes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="estimación-de-totales.html"><a href="estimación-de-totales.html"><i class="fa fa-check"></i><b>2.7</b> Estimación de totales</a>
+<li class="chapter" data-level="2.7" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-totales"><i class="fa fa-check"></i><b>2.7</b> Estimación de totales</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="estimación-de-totales.html"><a href="estimación-de-totales.html#ejemplo-ilustrativo-1"><i class="fa fa-check"></i><b>2.7.1</b> Ejemplo ilustrativo</a></li>
+<li class="chapter" data-level="2.7.1" data-path="estimación-de-totales.html"><a href="estimación-de-totales.html"><i class="fa fa-check"></i><b>2.7.1</b> Ejemplo ilustrativo</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="efecto-del-diseño-deff.html"><a href="efecto-del-diseño-deff.html"><i class="fa fa-check"></i><b>2.8</b> Efecto del diseño (DEFF)</a></li>
+<li class="chapter" data-level="2.8" data-path="02-Conceptos.html"><a href="#efecto-del-dise%C3%B1o-deff"><i class="fa fa-check"></i><b>2.8</b> Efecto del diseño (DEFF)</a></li>
 <li class="chapter" data-level="2.9" data-path="muestreo-estratificado-aleatorio-simple-con-dos-etapas.html"><a href="muestreo-estratificado-aleatorio-simple-con-dos-etapas.html"><i class="fa fa-check"></i><b>2.9</b> Muestreo estratificado aleatorio simple con dos etapas</a></li>
-<li class="chapter" data-level="2.10" data-path="práctica-en-r.html"><a href="práctica-en-r.html"><i class="fa fa-check"></i><b>2.10</b> Práctica en <code>R</code></a></li>
+<li class="chapter" data-level="2.10" data-path="02-Conceptos.html"><a href="#pr%C3%A1ctica-en-r"><i class="fa fa-check"></i><b>2.10</b> Práctica en <code>R</code></a></li>
 <li class="chapter" data-level="2.11" data-path="calibrando-con-r.html"><a href="calibrando-con-r.html"><i class="fa fa-check"></i><b>2.11</b> Calibrando con <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="del-manejo-de-datos-al-análisis-de-encuestas-complejas-en-r.html"><a href="del-manejo-de-datos-al-análisis-de-encuestas-complejas-en-r.html"><i class="fa fa-check"></i><b>3</b> Del manejo de datos al análisis de encuestas complejas en R</a>
+<li class="chapter" data-level="3" data-path="02-Conceptos.html"><a href="#del-manejo-de-datos-al-an%C3%A1lisis-de-encuestas-complejas-en-r"><i class="fa fa-check"></i><b>3</b> Del manejo de datos al análisis de encuestas complejas en R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="fundamentos-básicos-de-r-y-rstudio.html"><a href="fundamentos-básicos-de-r-y-rstudio.html"><i class="fa fa-check"></i><b>3.1</b> Fundamentos básicos de R y Rstudio</a></li>
-<li class="chapter" data-level="3.2" data-path="paquetes-para-el-análisis-de-encuestas.html"><a href="paquetes-para-el-análisis-de-encuestas.html"><i class="fa fa-check"></i><b>3.2</b> Paquetes para el análisis de encuestas</a></li>
-<li class="chapter" data-level="3.3" data-path="paquetes-complementarios-para-la-manipulación-y-visualización-de-datos.html"><a href="paquetes-complementarios-para-la-manipulación-y-visualización-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Paquetes complementarios para la manipulación y visualización de datos</a></li>
-<li class="chapter" data-level="3.4" data-path="creación-de-proyectos-en-r.html"><a href="creación-de-proyectos-en-r.html"><i class="fa fa-check"></i><b>3.4</b> Creación de proyectos en <code>R</code></a></li>
-<li class="chapter" data-level="3.5" data-path="lectura-de-bases-de-datos-y-manipulación.html"><a href="lectura-de-bases-de-datos-y-manipulación.html"><i class="fa fa-check"></i><b>3.5</b> Lectura de bases de datos y manipulación</a></li>
+<li class="chapter" data-level="3.1" data-path="02-Conceptos.html"><a href="#fundamentos-b%C3%A1sicos-de-r-y-rstudio"><i class="fa fa-check"></i><b>3.1</b> Fundamentos básicos de R y Rstudio</a></li>
+<li class="chapter" data-level="3.2" data-path="02-Conceptos.html"><a href="#paquetes-para-el-an%C3%A1lisis-de-encuestas"><i class="fa fa-check"></i><b>3.2</b> Paquetes para el análisis de encuestas</a></li>
+<li class="chapter" data-level="3.3" data-path="02-Conceptos.html"><a href="#paquetes-complementarios-para-la-manipulaci%C3%B3n-y-visualizaci%C3%B3n-de-datos"><i class="fa fa-check"></i><b>3.3</b> Paquetes complementarios para la manipulación y visualización de datos</a></li>
+<li class="chapter" data-level="3.4" data-path="02-Conceptos.html"><a href="#creaci%C3%B3n-de-proyectos-en-r"><i class="fa fa-check"></i><b>3.4</b> Creación de proyectos en <code>R</code></a></li>
+<li class="chapter" data-level="3.5" data-path="02-Conceptos.html"><a href="#lectura-de-bases-de-datos-y-manipulaci%C3%B3n"><i class="fa fa-check"></i><b>3.5</b> Lectura de bases de datos y manipulación</a></li>
 <li class="chapter" data-level="3.6" data-path="el-operador-pipe.html"><a href="el-operador-pipe.html"><i class="fa fa-check"></i><b>3.6</b> El operador <code>pipe</code></a></li>
-<li class="chapter" data-level="3.7" data-path="transformación-y-resumen-de-datos.html"><a href="transformación-y-resumen-de-datos.html"><i class="fa fa-check"></i><b>3.7</b> Transformación y resumen de datos</a></li>
-<li class="chapter" data-level="3.8" data-path="diferencias-entre-el-análisis-tradicional-y-el-análisis-de-encuestas-complejas.html"><a href="diferencias-entre-el-análisis-tradicional-y-el-análisis-de-encuestas-complejas.html"><i class="fa fa-check"></i><b>3.8</b> Diferencias entre el análisis tradicional y el análisis de encuestas complejas</a></li>
+<li class="chapter" data-level="3.7" data-path="02-Conceptos.html"><a href="#transformaci%C3%B3n-y-resumen-de-datos"><i class="fa fa-check"></i><b>3.7</b> Transformación y resumen de datos</a></li>
+<li class="chapter" data-level="3.8" data-path="02-Conceptos.html"><a href="#diferencias-entre-el-an%C3%A1lisis-tradicional-y-el-an%C3%A1lisis-de-encuestas-complejas"><i class="fa fa-check"></i><b>3.8</b> Diferencias entre el análisis tradicional y el análisis de encuestas complejas</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="cap4.html"><a href="cap4.html"><i class="fa fa-check"></i><b>4</b> Análisis de las variables continuas</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="definición-del-objeto-de-diseño.html"><a href="definición-del-objeto-de-diseño.html"><i class="fa fa-check"></i><b>4.1</b> Definición del objeto de diseño</a></li>
-<li class="chapter" data-level="4.2" data-path="estimación-de-totales-y-medias.html"><a href="estimación-de-totales-y-medias.html"><i class="fa fa-check"></i><b>4.2</b> Estimación de totales y medias</a>
+<li class="chapter" data-level="4.1" data-path="02-Conceptos.html"><a href="#definici%C3%B3n-del-objeto-de-dise%C3%B1o"><i class="fa fa-check"></i><b>4.1</b> Definición del objeto de diseño</a></li>
+<li class="chapter" data-level="4.2" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-totales-y-medias"><i class="fa fa-check"></i><b>4.2</b> Estimación de totales y medias</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="estimación-de-totales-y-medias.html"><a href="estimación-de-totales-y-medias.html#estimación-puntual"><i class="fa fa-check"></i><b>4.2.1</b> Estimación puntual</a></li>
-<li class="chapter" data-level="4.2.2" data-path="estimación-de-totales-y-medias.html"><a href="estimación-de-totales-y-medias.html#estimación-de-totales-1"><i class="fa fa-check"></i><b>4.2.2</b> Estimación de totales</a></li>
-<li class="chapter" data-level="4.2.3" data-path="estimación-de-totales-y-medias.html"><a href="estimación-de-totales-y-medias.html#estimación-de-la-media-e-intervalo-de-confianza"><i class="fa fa-check"></i><b>4.2.3</b> Estimación de la media e intervalo de confianza</a></li>
-<li class="chapter" data-level="4.2.4" data-path="estimación-de-totales-y-medias.html"><a href="estimación-de-totales-y-medias.html#estimación-de-medidas-de-localización-y-dispersión"><i class="fa fa-check"></i><b>4.2.4</b> Estimación de medidas de localización y dispersión</a></li>
+<li class="chapter" data-level="4.2.1" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-puntual"><i class="fa fa-check"></i><b>4.2.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="4.2.2" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-totales-1"><i class="fa fa-check"></i><b>4.2.2</b> Estimación de totales</a></li>
+<li class="chapter" data-level="4.2.3" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-la-media-e-intervalo-de-confianza"><i class="fa fa-check"></i><b>4.2.3</b> Estimación de la media e intervalo de confianza</a></li>
+<li class="chapter" data-level="4.2.4" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-medidas-de-localizaci%C3%B3n-y-dispersi%C3%B3n"><i class="fa fa-check"></i><b>4.2.4</b> Estimación de medidas de localización y dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-de-razones.html"><a href="estimación-de-razones.html"><i class="fa fa-check"></i><b>4.3</b> Estimación de razones</a>
+<li class="chapter" data-level="4.3" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-razones"><i class="fa fa-check"></i><b>4.3</b> Estimación de razones</a>
 <ul>
-<li class="chapter" data-level="" data-path="estimación-de-razones.html"><a href="estimación-de-razones.html#implementación-computacional-en-r"><i class="fa fa-check"></i>Implementación computacional en <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="estimación-de-razones.html"><a href="estimación-de-razones.html#interpretación-aplicada"><i class="fa fa-check"></i>Interpretación aplicada</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#implementaci%C3%B3n-computacional-en-r"><i class="fa fa-check"></i>Implementación computacional en <code>R</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#interpretaci%C3%B3n-aplicada"><i class="fa fa-check"></i>Interpretación aplicada</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="estimación-del-coeficiente-de-gini.html"><a href="estimación-del-coeficiente-de-gini.html"><i class="fa fa-check"></i><b>4.4</b> Estimación del coeficiente de Gini</a></li>
-<li class="chapter" data-level="4.5" data-path="análisis-de-correlación.html"><a href="análisis-de-correlación.html"><i class="fa fa-check"></i><b>4.5</b> Análisis de correlación</a>
+<li class="chapter" data-level="4.4" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-del-coeficiente-de-gini"><i class="fa fa-check"></i><b>4.4</b> Estimación del coeficiente de Gini</a></li>
+<li class="chapter" data-level="4.5" data-path="02-Conceptos.html"><a href="#an%C3%A1lisis-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>4.5</b> Análisis de correlación</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="análisis-de-correlación.html"><a href="análisis-de-correlación.html#ajuste-al-diseño-muestral"><i class="fa fa-check"></i><b>4.5.1</b> Ajuste al diseño muestral</a></li>
-<li class="chapter" data-level="4.5.2" data-path="análisis-de-correlación.html"><a href="análisis-de-correlación.html#expresión-formal"><i class="fa fa-check"></i><b>4.5.2</b> Expresión formal</a></li>
-<li class="chapter" data-level="4.5.3" data-path="análisis-de-correlación.html"><a href="análisis-de-correlación.html#implementación-en-r"><i class="fa fa-check"></i><b>4.5.3</b> Implementación en R</a></li>
+<li class="chapter" data-level="4.5.1" data-path="02-Conceptos.html"><a href="#ajuste-al-dise%C3%B1o-muestral"><i class="fa fa-check"></i><b>4.5.1</b> Ajuste al diseño muestral</a></li>
+<li class="chapter" data-level="4.5.2" data-path="02-Conceptos.html"><a href="#expresi%C3%B3n-formal"><i class="fa fa-check"></i><b>4.5.2</b> Expresión formal</a></li>
+<li class="chapter" data-level="4.5.3" data-path="02-Conceptos.html"><a href="#implementaci%C3%B3n-en-r"><i class="fa fa-check"></i><b>4.5.3</b> Implementación en R</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>4.6</b> Pruebas de hipótesis</a>
+<li class="chapter" data-level="4.6" data-path="02-Conceptos.html"><a href="#pruebas-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>4.6</b> Pruebas de hipótesis</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#planteamiento-general"><i class="fa fa-check"></i><b>4.6.1</b> Planteamiento general</a></li>
+<li class="chapter" data-level="4.6.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>4.6.1</b> Planteamiento general</a></li>
 <li class="chapter" data-level="4.6.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#prueba-para-la-diferencia-de-medias"><i class="fa fa-check"></i><b>4.6.2</b> Prueba para la diferencia de medias</a></li>
-<li class="chapter" data-level="4.6.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#estadístico-de-prueba-e-intervalo-de-confianza"><i class="fa fa-check"></i><b>4.6.3</b> Estadístico de prueba e intervalo de confianza</a></li>
+<li class="chapter" data-level="4.6.3" data-path="02-Conceptos.html"><a href="#estad%C3%ADstico-de-prueba-e-intervalo-de-confianza"><i class="fa fa-check"></i><b>4.6.3</b> Estadístico de prueba e intervalo de confianza</a></li>
 <li class="chapter" data-level="4.6.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-aplicado-en-r"><i class="fa fa-check"></i><b>4.6.4</b> Ejemplo aplicado en <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="estimación-de-contrastes.html"><a href="estimación-de-contrastes.html"><i class="fa fa-check"></i><b>4.7</b> Estimación de contrastes</a></li>
+<li class="chapter" data-level="4.7" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-contrastes"><i class="fa fa-check"></i><b>4.7</b> Estimación de contrastes</a></li>
 <li class="chapter" data-level="4.8" data-path="viz-continuas.html"><a href="viz-continuas.html"><i class="fa fa-check"></i><b>4.8</b> Visualización de variables continuas</a>
 <ul>
 <li class="chapter" data-level="4.8.1" data-path="viz-continuas.html"><a href="viz-continuas.html#histogramas"><i class="fa fa-check"></i><b>4.8.1</b> Histogramas</a></li>
 <li class="chapter" data-level="4.8.2" data-path="viz-continuas.html"><a href="viz-continuas.html#densidades-y-boxplots"><i class="fa fa-check"></i><b>4.8.2</b> Densidades y Boxplots</a></li>
-<li class="chapter" data-level="4.8.3" data-path="viz-continuas.html"><a href="viz-continuas.html#diagramas-de-dispersión"><i class="fa fa-check"></i><b>4.8.3</b> Diagramas de dispersión</a></li>
+<li class="chapter" data-level="4.8.3" data-path="02-Conceptos.html"><a href="#diagramas-de-dispersi%C3%B3n"><i class="fa fa-check"></i><b>4.8.3</b> Diagramas de dispersión</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="análisis-de-variables-categóricas.html"><a href="análisis-de-variables-categóricas.html"><i class="fa fa-check"></i><b>5</b> Análisis de variables categóricas</a>
+<li class="chapter" data-level="5" data-path="02-Conceptos.html"><a href="#an%C3%A1lisis-de-variables-categ%C3%B3ricas"><i class="fa fa-check"></i><b>5</b> Análisis de variables categóricas</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="estimación-del-tamaño-poblacional.html"><a href="estimación-del-tamaño-poblacional.html"><i class="fa fa-check"></i><b>5.1</b> Estimación del tamaño poblacional</a>
+<li class="chapter" data-level="5.1" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-del-tama%C3%B1o-poblacional"><i class="fa fa-check"></i><b>5.1</b> Estimación del tamaño poblacional</a>
 <ul>
-<li class="chapter" data-level="" data-path="estimación-del-tamaño-poblacional.html"><a href="estimación-del-tamaño-poblacional.html#estimación-de-totales-en-r"><i class="fa fa-check"></i>Estimación de totales en <code>R</code></a></li>
+<li class="chapter" data-level="" data-path=""><a href="#estimaci%C3%B3n-de-totales-en-r"><i class="fa fa-check"></i>Estimación de totales en <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="estimación-de-proporciones.html"><a href="estimación-de-proporciones.html"><i class="fa fa-check"></i><b>5.2</b> Estimación de proporciones</a>
+<li class="chapter" data-level="5.2" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-proporciones"><i class="fa fa-check"></i><b>5.2</b> Estimación de proporciones</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="estimación-de-proporciones.html"><a href="estimación-de-proporciones.html#estimación-de-proporciones-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Estimación de proporciones en <code>R</code></a></li>
+<li class="chapter" data-level="5.2.1" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-proporciones-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Estimación de proporciones en <code>R</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="tablas-cruzadas.html"><a href="tablas-cruzadas.html"><i class="fa fa-check"></i><b>5.3</b> Tablas cruzadas</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="tablas-cruzadas.html"><a href="tablas-cruzadas.html#definición-y-notación"><i class="fa fa-check"></i><b>5.3.1</b> Definición y notación</a></li>
+<li class="chapter" data-level="5.3.1" data-path="02-Conceptos.html"><a href="#definici%C3%B3n-y-notaci%C3%B3n"><i class="fa fa-check"></i><b>5.3.1</b> Definición y notación</a></li>
 <li class="chapter" data-level="5.3.2" data-path="tablas-cruzadas.html"><a href="tablas-cruzadas.html#tablas-de-doble-entrada"><i class="fa fa-check"></i><b>5.3.2</b> Tablas de doble entrada</a></li>
 <li class="chapter" data-level="5.3.3" data-path="tablas-cruzadas.html"><a href="tablas-cruzadas.html#proporciones-para-variables-binarias"><i class="fa fa-check"></i><b>5.3.3</b> Proporciones para variables binarias</a></li>
 <li class="chapter" data-level="5.3.4" data-path="tablas-cruzadas.html"><a href="tablas-cruzadas.html#proporciones-para-variables-multinomiales"><i class="fa fa-check"></i><b>5.3.4</b> Proporciones para variables multinomiales</a></li>
@@ -282,32 +284,32 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="viz-categoricas.html"><a href="viz-categoricas.html"><i class="fa fa-check"></i><b>5.4</b> Visualización de variables categóricas</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="viz-categoricas.html"><a href="viz-categoricas.html#gráficos-de-barras"><i class="fa fa-check"></i><b>5.4.1</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="5.4.1" data-path="02-Conceptos.html"><a href="#gr%C3%A1ficos-de-barras"><i class="fa fa-check"></i><b>5.4.1</b> Gráficos de barras</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="viz-mapas.html"><a href="viz-mapas.html"><i class="fa fa-check"></i><b>5.5</b> Visualización de variables categóricas en mapas</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="viz-mapas.html"><a href="viz-mapas.html#carga-del-shapefile-y-mapa-base"><i class="fa fa-check"></i><b>5.5.1</b> Carga del shapefile y mapa base</a></li>
-<li class="chapter" data-level="5.5.2" data-path="viz-mapas.html"><a href="viz-mapas.html#mapa-coroplético-de-pobreza-masculina-por-región"><i class="fa fa-check"></i><b>5.5.2</b> Mapa coroplético de pobreza masculina por región</a></li>
-<li class="chapter" data-level="5.5.3" data-path="viz-mapas.html"><a href="viz-mapas.html#mapa-del-coeficiente-de-variación-del-ingreso-medio"><i class="fa fa-check"></i><b>5.5.3</b> Mapa del coeficiente de variación del ingreso medio</a></li>
+<li class="chapter" data-level="5.5.2" data-path="02-Conceptos.html"><a href="#mapa-coropl%C3%A9tico-de-pobreza-masculina-por-regi%C3%B3n"><i class="fa fa-check"></i><b>5.5.2</b> Mapa coroplético de pobreza masculina por región</a></li>
+<li class="chapter" data-level="5.5.3" data-path="02-Conceptos.html"><a href="#mapa-del-coeficiente-de-variaci%C3%B3n-del-ingreso-medio"><i class="fa fa-check"></i><b>5.5.3</b> Mapa del coeficiente de variación del ingreso medio</a></li>
 <li class="chapter" data-level="5.5.4" data-path="viz-mapas.html"><a href="viz-mapas.html#mapa-bivariante-con-ggplot2"><i class="fa fa-check"></i><b>5.5.4</b> Mapa bivariante con <code>ggplot2</code></a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cap6.html"><a href="cap6.html"><i class="fa fa-check"></i><b>6</b> Modelos de regresión</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="antecedentes-históricos-y-desarrollos-metodológicos.html"><a href="antecedentes-históricos-y-desarrollos-metodológicos.html"><i class="fa fa-check"></i><b>6.1</b> Antecedentes históricos y desarrollos metodológicos</a></li>
-<li class="chapter" data-level="6.2" data-path="relevancia-práctica.html"><a href="relevancia-práctica.html"><i class="fa fa-check"></i><b>6.2</b> Relevancia práctica</a></li>
+<li class="chapter" data-level="6.1" data-path="02-Conceptos.html"><a href="#antecedentes-hist%C3%B3ricos-y-desarrollos-metodol%C3%B3gicos"><i class="fa fa-check"></i><b>6.1</b> Antecedentes históricos y desarrollos metodológicos</a></li>
+<li class="chapter" data-level="6.2" data-path="02-Conceptos.html"><a href="#relevancia-pr%C3%A1ctica"><i class="fa fa-check"></i><b>6.2</b> Relevancia práctica</a></li>
 <li class="chapter" data-level="6.3" data-path="uso-de-ponderaciones.html"><a href="uso-de-ponderaciones.html"><i class="fa fa-check"></i><b>6.3</b> Uso de ponderaciones</a></li>
 <li class="chapter" data-level="6.4" data-path="enfoques-inferenciales.html"><a href="enfoques-inferenciales.html"><i class="fa fa-check"></i><b>6.4</b> Enfoques inferenciales</a></li>
-<li class="chapter" data-level="6.5" data-path="estimación-de-los-parámetros.html"><a href="estimación-de-los-parámetros.html"><i class="fa fa-check"></i><b>6.5</b> Estimación de los parámetros</a></li>
-<li class="chapter" data-level="6.6" data-path="diagnóstico-del-modelo.html"><a href="diagnóstico-del-modelo.html"><i class="fa fa-check"></i><b>6.6</b> Diagnóstico del modelo</a>
+<li class="chapter" data-level="6.5" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-los-par%C3%A1metros"><i class="fa fa-check"></i><b>6.5</b> Estimación de los parámetros</a></li>
+<li class="chapter" data-level="6.6" data-path="02-Conceptos.html"><a href="#diagn%C3%B3stico-del-modelo"><i class="fa fa-check"></i><b>6.6</b> Diagnóstico del modelo</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="diagnóstico-del-modelo.html"><a href="diagnóstico-del-modelo.html#coeficiente-de-determinación"><i class="fa fa-check"></i><b>6.6.1</b> Coeficiente de determinación</a></li>
-<li class="chapter" data-level="6.6.2" data-path="diagnóstico-del-modelo.html"><a href="diagnóstico-del-modelo.html#diagnóstico-de-los-residuales"><i class="fa fa-check"></i><b>6.6.2</b> Diagnóstico de los residuales</a></li>
-<li class="chapter" data-level="6.6.3" data-path="diagnóstico-del-modelo.html"><a href="diagnóstico-del-modelo.html#observaciones-influyentes"><i class="fa fa-check"></i><b>6.6.3</b> Observaciones influyentes</a></li>
+<li class="chapter" data-level="6.6.1" data-path="02-Conceptos.html"><a href="#coeficiente-de-determinaci%C3%B3n"><i class="fa fa-check"></i><b>6.6.1</b> Coeficiente de determinación</a></li>
+<li class="chapter" data-level="6.6.2" data-path="02-Conceptos.html"><a href="#diagn%C3%B3stico-de-los-residuales"><i class="fa fa-check"></i><b>6.6.2</b> Diagnóstico de los residuales</a></li>
+<li class="chapter" data-level="6.6.3" data-path="diagnóstico-del-modelo.html"><a href="diagnóstico-del-modelo.html"><i class="fa fa-check"></i><b>6.6.3</b> Observaciones influyentes</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="inferencia-sobre-los-parámetros-del-modelo.html"><a href="inferencia-sobre-los-parámetros-del-modelo.html"><i class="fa fa-check"></i><b>6.7</b> Inferencia sobre los parámetros del modelo</a>
+<li class="chapter" data-level="6.7" data-path="02-Conceptos.html"><a href="#inferencia-sobre-los-par%C3%A1metros-del-modelo"><i class="fa fa-check"></i><b>6.7</b> Inferencia sobre los parámetros del modelo</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="inferencia-sobre-los-parámetros-del-modelo.html"><a href="inferencia-sobre-los-parámetros-del-modelo.html#estimación-puntual-e-intervalo-de-predicción"><i class="fa fa-check"></i><b>6.7.1</b> Estimación puntual e intervalo de predicción</a></li>
+<li class="chapter" data-level="6.7.1" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-puntual-e-intervalo-de-predicci%C3%B3n"><i class="fa fa-check"></i><b>6.7.1</b> Estimación puntual e intervalo de predicción</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="cap-glm.html"><a href="cap-glm.html"><i class="fa fa-check"></i><b>7</b> Modelos lineales generalizados</a>
@@ -317,7 +319,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1.1" data-path="sec-mpv.html"><a href="sec-mpv.html#sec-mv"><i class="fa fa-check"></i><b>7.1.1</b> Método de la máxima verosimilitud</a></li>
 <li class="chapter" data-level="7.1.2" data-path="sec-mpv.html"><a href="sec-mpv.html#sec-mpv-formal"><i class="fa fa-check"></i><b>7.1.2</b> Método de máxima pseudo-verosimilitud</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="configuración-del-diseño-muestral.html"><a href="configuración-del-diseño-muestral.html"><i class="fa fa-check"></i><b>7.2</b> Configuración del diseño muestral</a></li>
+<li class="chapter" data-level="7.2" data-path="02-Conceptos.html"><a href="#configuraci%C3%B3n-del-dise%C3%B1o-muestral"><i class="fa fa-check"></i><b>7.2</b> Configuración del diseño muestral</a></li>
 <li class="chapter" data-level="7.3" data-path="sec-independencia.html"><a href="sec-independencia.html"><i class="fa fa-check"></i><b>7.3</b> Tablas de contingencia y pruebas de independencia</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="sec-independencia.html"><a href="sec-independencia.html#sec-rao-scott"><i class="fa fa-check"></i><b>7.3.1</b> Prueba de Rao-Scott</a></li>
@@ -353,10 +355,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="sec-logistica-multinivel.html"><a href="sec-logistica-multinivel.html"><i class="fa fa-check"></i><b>8.7</b> Modelos logísticos multinivel</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="sec-logistica-multinivel.html"><a href="sec-logistica-multinivel.html#modelo-nulo-logístico"><i class="fa fa-check"></i><b>8.7.1</b> Modelo nulo logístico</a></li>
-<li class="chapter" data-level="8.7.2" data-path="sec-logistica-multinivel.html"><a href="sec-logistica-multinivel.html#modelo-logístico-con-intercepto-aleatorio"><i class="fa fa-check"></i><b>8.7.2</b> Modelo logístico con intercepto aleatorio</a></li>
-<li class="chapter" data-level="8.7.3" data-path="sec-logistica-multinivel.html"><a href="sec-logistica-multinivel.html#modelo-logístico-con-intercepto-y-pendiente-aleatoria"><i class="fa fa-check"></i><b>8.7.3</b> Modelo logístico con intercepto y pendiente aleatoria</a></li>
-<li class="chapter" data-level="8.7.4" data-path="sec-logistica-multinivel.html"><a href="sec-logistica-multinivel.html#extensión-con-variable-zona"><i class="fa fa-check"></i><b>8.7.4</b> Extensión con variable zona</a></li>
+<li class="chapter" data-level="8.7.1" data-path="02-Conceptos.html"><a href="#modelo-nulo-log%C3%ADstico"><i class="fa fa-check"></i><b>8.7.1</b> Modelo nulo logístico</a></li>
+<li class="chapter" data-level="8.7.2" data-path="02-Conceptos.html"><a href="#modelo-log%C3%ADstico-con-intercepto-aleatorio"><i class="fa fa-check"></i><b>8.7.2</b> Modelo logístico con intercepto aleatorio</a></li>
+<li class="chapter" data-level="8.7.3" data-path="02-Conceptos.html"><a href="#modelo-log%C3%ADstico-con-intercepto-y-pendiente-aleatoria"><i class="fa fa-check"></i><b>8.7.3</b> Modelo logístico con intercepto y pendiente aleatoria</a></li>
+<li class="chapter" data-level="8.7.4" data-path="02-Conceptos.html"><a href="#extensi%C3%B3n-con-variable-zona"><i class="fa fa-check"></i><b>8.7.4</b> Extensión con variable zona</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="cap-imputacion.html"><a href="cap-imputacion.html"><i class="fa fa-check"></i><b>9</b> Procedimientos de imputación</a>
@@ -374,24 +376,24 @@ div.csl-indent {
 <li class="chapter" data-level="9.6" data-path="sec-media-condicional.html"><a href="sec-media-condicional.html"><i class="fa fa-check"></i><b>9.6</b> Imputación por la media condicional</a></li>
 <li class="chapter" data-level="9.7" data-path="sec-hotdeck.html"><a href="sec-hotdeck.html"><i class="fa fa-check"></i><b>9.7</b> Imputación por hot-deck y cold-deck</a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="sec-hotdeck.html"><a href="sec-hotdeck.html#imputación-hot-deck-para-el-ingreso"><i class="fa fa-check"></i><b>9.7.1</b> Imputación hot-deck para el ingreso</a></li>
-<li class="chapter" data-level="9.7.2" data-path="sec-hotdeck.html"><a href="sec-hotdeck.html#imputación-hot-deck-para-la-variable-empleo"><i class="fa fa-check"></i><b>9.7.2</b> Imputación hot-deck para la variable empleo</a></li>
+<li class="chapter" data-level="9.7.1" data-path="02-Conceptos.html"><a href="#imputaci%C3%B3n-hot-deck-para-el-ingreso"><i class="fa fa-check"></i><b>9.7.1</b> Imputación hot-deck para el ingreso</a></li>
+<li class="chapter" data-level="9.7.2" data-path="02-Conceptos.html"><a href="#imputaci%C3%B3n-hot-deck-para-la-variable-empleo"><i class="fa fa-check"></i><b>9.7.2</b> Imputación hot-deck para la variable empleo</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="sec-regresion.html"><a href="sec-regresion.html"><i class="fa fa-check"></i><b>9.8</b> Imputación por regresión</a></li>
 <li class="chapter" data-level="9.9" data-path="sec-knn.html"><a href="sec-knn.html"><i class="fa fa-check"></i><b>9.9</b> Imputación por el vecino más cercano</a></li>
 <li class="chapter" data-level="9.10" data-path="sec-knn-regresion.html"><a href="sec-knn-regresion.html"><i class="fa fa-check"></i><b>9.10</b> Imputación por el vecino más cercano con regresión</a></li>
 <li class="chapter" data-level="9.11" data-path="sec-im.html"><a href="sec-im.html"><i class="fa fa-check"></i><b>9.11</b> Imputación múltiple</a>
 <ul>
-<li class="chapter" data-level="9.11.1" data-path="sec-im.html"><a href="sec-im.html#estimadores-de-la-imputación-múltiple"><i class="fa fa-check"></i><b>9.11.1</b> Estimadores de la imputación múltiple</a></li>
-<li class="chapter" data-level="9.11.2" data-path="sec-im.html"><a href="sec-im.html#implementación-mediante-bootstrap"><i class="fa fa-check"></i><b>9.11.2</b> Implementación mediante bootstrap</a></li>
-<li class="chapter" data-level="9.11.3" data-path="sec-im.html"><a href="sec-im.html#imputación-múltiple-para-la-encuesta-de-hogares"><i class="fa fa-check"></i><b>9.11.3</b> Imputación múltiple para la encuesta de hogares</a></li>
-<li class="chapter" data-level="9.11.4" data-path="sec-im.html"><a href="sec-im.html#estimación-del-ingreso-medio-mediante-imputación-múltiple"><i class="fa fa-check"></i><b>9.11.4</b> Estimación del ingreso medio mediante imputación múltiple</a></li>
-<li class="chapter" data-level="9.11.5" data-path="sec-im.html"><a href="sec-im.html#estimación-de-la-varianza-del-ingreso"><i class="fa fa-check"></i><b>9.11.5</b> Estimación de la varianza del ingreso</a></li>
-<li class="chapter" data-level="9.11.6" data-path="sec-im.html"><a href="sec-im.html#estimación-de-proporciones-de-empleo"><i class="fa fa-check"></i><b>9.11.6</b> Estimación de proporciones de empleo</a></li>
+<li class="chapter" data-level="9.11.1" data-path="02-Conceptos.html"><a href="#estimadores-de-la-imputaci%C3%B3n-m%C3%BAltiple"><i class="fa fa-check"></i><b>9.11.1</b> Estimadores de la imputación múltiple</a></li>
+<li class="chapter" data-level="9.11.2" data-path="02-Conceptos.html"><a href="#implementaci%C3%B3n-mediante-bootstrap"><i class="fa fa-check"></i><b>9.11.2</b> Implementación mediante bootstrap</a></li>
+<li class="chapter" data-level="9.11.3" data-path="02-Conceptos.html"><a href="#imputaci%C3%B3n-m%C3%BAltiple-para-la-encuesta-de-hogares"><i class="fa fa-check"></i><b>9.11.3</b> Imputación múltiple para la encuesta de hogares</a></li>
+<li class="chapter" data-level="9.11.4" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-del-ingreso-medio-mediante-imputaci%C3%B3n-m%C3%BAltiple"><i class="fa fa-check"></i><b>9.11.4</b> Estimación del ingreso medio mediante imputación múltiple</a></li>
+<li class="chapter" data-level="9.11.5" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-la-varianza-del-ingreso"><i class="fa fa-check"></i><b>9.11.5</b> Estimación de la varianza del ingreso</a></li>
+<li class="chapter" data-level="9.11.6" data-path="02-Conceptos.html"><a href="#estimaci%C3%B3n-de-proporciones-de-empleo"><i class="fa fa-check"></i><b>9.11.6</b> Estimación de proporciones de empleo</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
-<li><a Análisis de encuestas con R </a></li>
+<li><a Análisis de encuestas de hogares con R </a></li>
 
 </ul>
 
@@ -411,7 +413,7 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="conceptos-básicos-en-encuestas-de-hogares" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Conceptos básicos en encuestas de hogares<a href="conceptos-básicos-en-encuestas-de-hogares.html#conceptos-básicos-en-encuestas-de-hogares" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Capítulo 2</span> Conceptos básicos en encuestas de hogares<a href="#conceptos-b%C3%A1sicos-en-encuestas-de-hogares" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>El análisis riguroso de encuestas de hogares es una herramienta fundamental para comprender la realidad social, económica y demográfica de una población. Sin embargo, la validez de los resultados que se derivan de una encuesta no depende únicamente del tamaño de la muestra o de la calidad de la recolección de datos, sino del modo en que fue diseñada y de la forma en que ese diseño se incorpora en el análisis estadístico.</p>
 <p>Las encuestas de hogares son una de las principales herramientas para comprender la realidad social y económica de una población. A partir de ellas se obtiene información esencial sobre condiciones de vida, empleo, educación, salud y otros aspectos que orientan la formulación de políticas públicas y la toma de decisiones basadas en la evidencia proporcionada por los datos.</p>
 <p>En la práctica, las encuestas de hogares suelen utilizar diseños complejos, que combinan la estratificación y varias etapas para la selección de los informantes. Este tipo de diseños busca optimizar recursos y mejorar la precisión de las estimaciones, lo que induce probabilidades de inclusión desiguales. Ignorar estos aspectos puede conducir a estimaciones sesgadas, errores estándar incorrectos y conclusiones erradas.</p>
@@ -422,7 +424,7 @@ div.csl-indent {
 <p>En contraste, ignorar el diseño muestral y aplicar métodos de análisis que asumen una muestra aleatoria simple puede llevar a estimaciones sesgadas, errores de inferencia y conclusiones equivocadas. Por ello, el análisis de encuestas de hogares no puede desligarse de su diseño de selección: este no es un detalle técnico accesorio, sino el núcleo mismo que sustenta la validez de la información producida.</p>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
 <div id="ref-Gutierrez2016" class="csl-entry">
 Gutiérrez, H. A. (2016). <em>Estrategias de muestreo: diseño de encuestas y estimación de parámetros</em> (Segunda edición). Ediciones de la U.
 </div>
