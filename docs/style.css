@@ -15,20 +15,20 @@ body {
 }
 
 .book .book-summary {
-  background: #ffffff;
-  border-right: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-strong) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .book .book-summary ul.summary li a,
 .book .book-summary ul.summary li span {
-  color: var(--primary-strong);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
 
 .book .book-summary ul.summary li.active > a {
-  color: var(--primary-strong);
-  border-left: 3px solid var(--accent);
-  background: #eef5fd;
+  color: #ffffff;
+  border-left: 3px solid #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .book .book-header {
