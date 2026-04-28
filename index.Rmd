@@ -50,4 +50,6 @@ output:
 
 La versión online de este libro está licenciada bajo una [Licencia Internacional de Creative Commons para compartir con atribución no comercial 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/). 
 
+También puede descargar la versión en PDF desde aquí: <a href="An%C3%A1lisis%20de%20encuestas%20con%20R.pdf" download>Descargar libro en PDF</a>.
+
 Este libro es el resultado de un compendio de las experiencias internacionales prácticas adquiridas por los autores en su asesoría a los países de América Latina y el Caribe desde la División de Estadísticas de la CEPAL.
