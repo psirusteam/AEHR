@@ -5,101 +5,52 @@ knitr::opts_chunk$set(warning = FALSE,
 source("_tabla_helper.R")
 ```
 
-# Conceptos básicos en encuestas de hogares
+# Conceptos básicos 
 
-El análisis riguroso de encuestas de hogares es una herramienta fundamental para comprender la realidad social, económica y demográfica de una población. Sin embargo, la validez de los resultados que se derivan de una encuesta no depende únicamente del tamaño de la muestra o de la calidad de la recolección de datos, sino del modo en que fue diseñada y de la forma en que ese diseño se incorpora en el análisis estadístico.
+Las encuestas de hogares constituyen una de las principales fuentes de información para entender la realidad social y económica de una población. A partir de ellas se obtiene información esencial sobre condiciones de vida, empleo, educación, salud y otros aspectos clave que orientan la formulación de políticas públicas y la toma de decisiones basadas en evidencia.
 
-Las encuestas de hogares son una de las principales herramientas para comprender la realidad social y económica de una población. A partir de ellas se obtiene información esencial sobre condiciones de vida, empleo, educación, salud y otros aspectos que orientan la formulación de políticas públicas y la toma de decisiones basadas en la evidencia proporcionada por los datos. 
+Por ende, el análisis riguroso de las encuestas de hogares es una herramienta fundamental para comprender la realidad social, económica y demográfica de una población. Sin embargo, la validez de los resultados que se derivan de una encuesta no depende únicamente del tamaño de la muestra o de la calidad de la recolección de datos, sino también de la forma en que fue diseñada y de cómo ese diseño se incorpora en el análisis estadístico.
 
-En la práctica, las encuestas de hogares suelen utilizar diseños complejos, que combinan la estratificación y varias etapas para la selección de los informantes. Este tipo de diseños busca optimizar recursos y mejorar la precisión de las estimaciones, lo que induce probabilidades de inclusión desiguales. Ignorar estos aspectos puede conducir a estimaciones sesgadas, errores estándar incorrectos y conclusiones erradas.
+En la práctica, las encuestas de hogares suelen emplear diseños complejos que combinan estratificación y múltiples etapas en la selección de los informantes. Este tipo de diseños busca optimizar recursos y mejorar la precisión de las estimaciones, pero también genera probabilidades de inclusión desiguales. Ignorar estas características puede conducir a estimaciones sesgadas, errores estándar incorrectos y conclusiones equivocadas.
 
-Como señalan @sarndal2003model y @Gutierrez2016, toda encuesta parte de tres conceptos fundamentales, la población objetivo, y el marco muestral, que sirven de base para el diseño de la encuesta y la selección de la muestra. Estos elementos son esenciales para garantizar la validez de las inferencias y la representatividad de los resultados.
+Como señalan @sarndal2003model y @Gutierrez2016, toda encuesta parte de tres conceptos fundamentales: la población objetivo, el marco muestral y la selección de la muestra. Para obtener conclusiones válidas sobre la población, es necesario adoptar un enfoque de inferencia basada en el diseño de muestreo, el cual reconoce que la muestra surge de una selección aleatoria gobernada por un esquema probabilístico bien definido. En dicho esquema, cada unidad de la población tiene una probabilidad conocida y distinta de cero de ser incluida en la muestra, lo que constituye la garantía fundamental de que los resultados puedan generalizarse a la población de referencia.
 
-En este contexto, un aspecto crucial es la consideración del diseño muestral. Para obtener conclusiones válidas sobre la población, es necesario adoptar un enfoque de inferencia basada en el diseño, el cual reconoce que la muestra no surge de una selección aleatoria simple, sino de un plan probabilístico bien definido. En dicho plan, cada unidad de la población tiene una probabilidad conocida y distinta de cero de ser incluida en la muestra, lo que constituye la garantía fundamental de que los resultados puedan generalizarse a la población de referencia.
+Bajo este enfoque, es posible demostrar que las estimaciones son insesgadas (o aproximadamente insesgadas) con respecto al esquema de muestreo, sin depender de supuestos sobre la distribución de la variable de interés. Un elemento central de este proceso son los pesos de muestreo, que indican cuántas unidades de la población está representando cada unidad seleccionada. Dichos pesos permiten ajustar las estimaciones a las particularidades del diseño, de modo que los resultados reflejen con fidelidad la estructura poblacional. Un diseño bien documentado facilita el análisis estadístico, respalda la interpretación rigurosa de los datos y posibilita obtener conclusiones sobre fenómenos complejos.
 
-Bajo este enfoque, es posible demostrar que las estimaciones son insesgadas (o prácticamente insesgadas) en relación con el esquema de muestreo, sin depender de supuestos sobre la distribución de la variable de interés. Esto otorga a la inferencia basada en el diseño un carácter robusto y ampliamente aceptado en el análisis de encuestas de hogares.
+En contraste, ignorar el diseño muestral y aplicar métodos de análisis convencionales puede conducir a estimaciones sesgadas, errores de inferencia y conclusiones equivocadas. Por ello, el análisis de encuestas de hogares no puede desligarse de su diseño de selección: este no es un aspecto técnico menor, sino el núcleo que sustenta la validez de la información producida.
 
-Un elemento central de este proceso son los pesos de muestreo, que indican cuántas unidades de la población está representando cada unidad seleccionada. Dichos pesos permiten ajustar las estimaciones a las particularidades del diseño, de modo que los resultados reflejen con fidelidad la estructura poblacional. Además, un diseño bien documentado facilita el análisis estadístico, respalda la interpretación rigurosa de los datos y posibilita obtener conclusiones sobre fenómenos complejos.
+## Elementos estructurales
 
-En contraste, ignorar el diseño muestral y aplicar métodos de análisis que asumen una muestra aleatoria simple puede llevar a estimaciones sesgadas, errores de inferencia y conclusiones equivocadas. Por ello, el análisis de encuestas de hogares no puede desligarse de su diseño de selección: este no es un detalle técnico accesorio, sino el núcleo mismo que sustenta la validez de la información producida.
+El concepto de encuesta está directamente asociado a una población finita compuesta por individuos que deben ser entrevistados. En este contexto, la *población objetivo* se refiere al conjunto específico de unidades sobre las cuales se desea producir resultados. A su vez, es necesario definir los *dominios de análisis*, que corresponden a los distintos niveles de desagregación sobre los cuales se presentan los resultados y que están estrechamente vinculados al diseño probabilístico. 
 
+El diseño de las encuestas de hogares en América Latina suele requerir la selección de unidades en varias etapas, lo que introduce el concepto de *unidades de muestreo*. Estas unidades sirven como intermediarias para la selección final de los hogares que integrarán la muestra. Por ejemplo, en un diseño en tres etapas: las unidades primarias de muestreo (UPM) corresponderían a los municipios, las unidades secundarias de muestreo (USM) a los sectores censales (que conforman una malla territorial definida en el último censo) y, finalmente, las viviendas constituyen las últimas unidades seleccionadas.
 
-## Universo de estudio y población objetivo
-
-El término encuesta se encuentra directamente relacionado con una población finita compuesta de individuos a los cuales es necesario entrevistar. El *universo de estudio* lo constituye el total de individuos o elementos que poseen dichas características a ser estudiadas. Ahora bien, conjunto de unidades de interés sobre los cuales se tendrán resultados recibe el nombre de *población objetivo*. Por ejemplo, *la Encuesta Nacional de Empleo y Desempleo* de Ecuador define su población objetivo como todas las personas mayores de 10 años residentes en viviendas particulares en Ecuador.
-
-## Unidades de análisis
-
-Corresponden a los diferentes niveles de desagregación establecidos para consolidar el diseño probabilístico y sobre los que se presentan los resultados de interés. En México, la *Encuesta Nacional de Ingresos y Gastos de los Hogares* define como unidades de análisis el ámbito al que pertenece la vivienda, urbano alto, complemento urbano y rural. La *Gran Encuesta Integrada de Hogares* de Colombia tiene cobertura nacional y sus unidades de análisis están definidas por 13 grandes ciudades junto con sus áreas metropolitanas.
-
-## Unidades de muestreo
-
-El diseño de una encuesta de hogares en América Latina plantea la necesidad de seleccionar en varias etapas ciertas *unidades de muestreo* que sirven como medio para seleccionar finalmente a los hogares que participarán de la muestra. La *Pesquisa Nacional por Amostra de Domicilios (PNAD)* en Brasil se realiza por medio de una muestra de viviendas en tres etapas, cada etapa se define como una unidad de muestreo. Por ejemplo, las unidades de muestreo en PNAD son:
-
--   Las unidades primarias de muestreo (UPM) son los municipios,
--   Las unidades secundarias de muestreo (USM) son los sectores censales, que conforman una malla territorial conformada en el último Censo Demográfico.
--   Las últimas unidades en ser seleccionadas son las viviendas.
-
-## Marcos de muestreo
-
-Para realizar un proceso de selección sistemática de hogares es indispensable disponer de un marco muestral que actúe como _enlace_ entre las unidades de muestreo y los hogares que conforman la población objetivo. Dicho marco constituye el conjunto en el cual se identifican a todos los elementos que componen la población objeto de estudio, y a partir del cual se extrae la muestra.
-
-En las encuestas de hogares con diseños muestrales complejos, los marcos de muestreo suelen ser de áreas geográficas, es decir, estructuras espaciales que vinculan directamente a los hogares o personas con zonas delimitadas que los contienen. Este tipo de marco facilita la organización del territorio en unidades más manejables y permite una selección por etapas, manteniendo los principios del muestreo probabilístico.
-
-Un ejemplo ilustrativo es la *Encuesta Nacional de Hogares* de Costa Rica, que utiliza un marco muestral elaborado a partir del Censo Nacional de Población y Vivienda de 2011. Este marco corresponde a un marco de áreas, en el que las unidades de muestreo son superficies geográficas asociadas con las viviendas. Este marco permite la definición de UPM con 150 viviendas en las zonas urbanas y 100 viviendas en las zonas rurales. Sobre esta base, se definen las unidades primarias de muestreo (UPM), conformadas por 10.461 UPM, de las cuales el 64,5% son urbanas y el 35,5% son rurales.
-
-
-## Motivación {#sec-motivacion}
-
-> Desde que se popularizaron las encuestas de hogares en 1940, se han hecho evidentes algunas tendencias vinculadas a los avances tecnológicos tanto en las agencias estadísticas como en la sociedad, las cuales se han acelerado con la introducción del computador.
-> *@gambino2009sampling*
-
-El muestreo surge como respuesta a la necesidad de obtener información estadística precisa sobre una población objetivo, sin recurrir a un censo completo. Como señala @Gutierrez2016, el muestreo consiste en investigaciones parciales sobre la población que permiten inferir resultados al conjunto total. En las últimas décadas, esta metodología se ha consolidado en distintos campos —especialmente en el sector gubernamental, con la producción de estadísticas oficiales que facilitan el seguimiento de políticas públicas y de los Objetivos de Desarrollo Sostenible—, pero también en el ámbito académico, privado y de comunicaciones.
-
-En el marco de este libro, el foco se centra en el análisis de encuestas de hogares. Para que el lector disponga de ejemplos prácticos, en este capítulo se empleará la base de datos *BigCity*, que contiene información socioeconómica de 150.266 personas de una ciudad en un año específico. Entre sus variables se encuentran:
-
-* *HHID:* Identificador del hogar.
-* *PersonID:* Identificador de la persona dentro del hogar.
-* *Stratum:* Estrato geográfico (119 en total).
-* *PSU:* Unidades primarias de muestreo (1664 en total).
-* *Zone:* Zona urbana o rural.
-* *Sex:* Sexo del entrevistado.
-* *Income:* Ingreso mensual per cápita.
-* *Expenditure:* Gasto mensual per cápita.
-* *Employment:* Situación laboral.
-* *Poverty:* Condición de pobreza según ingresos.
+Para llevar a cabo este proceso de selección de manera sistemática, es indispensable contar con un *marco muestral*, el cual actúa como un enlace entre las unidades de muestreo y los hogares que conforman la población objetivo. Este marco corresponde al conjunto en el que se identifican todos los elementos de la población de interés y a partir del cual se extrae la muestra. En encuestas con diseños complejos, estos marcos suelen ser estructuras geoespaciales que vinculan a los hogares o personas con áreas delimitadas. Esto facilita la organización del territorio en unidades operativas y permite implementar esquemas de selección por etapas manteniendo los principios del muestreo probabilístico.
 
 ### La importancia de considerar el diseño muestral
 
-Al analizar datos provenientes de encuestas de hogares, ignorar el diseño muestral compromete la representatividad, la precisión y la validez de los resultados. Este descuido puede traducirse en inferencias sesgadas y en decisiones basadas en conclusiones erróneas.
+Las encuestas de hogares se caracterizan por el uso de diseños de muestreo complejos (con estratificación, conglomeración y probabilidades desiguales de selección) que buscan mejorar la eficiencia y la precisión de las estimaciones, así como por la asignación de pesos de muestreo a cada unidad, los cuales permiten representar adecuadamente a la población. Al analizar datos provenientes de encuestas de hogares, ignorar el diseño muestral compromete la representatividad, la precisión y la validez de los resultados. 
 
-Como lo muestran @korn1995analysis, las estimaciones ponderadas y no ponderadas pueden diferir sustancialmente, lo que evidencia la importancia de aplicar siempre métodos consistentes con el diseño de la encuesta. Así que, considerar adecuadamente los pesos, la estratificación y las unidades de muestreo no es una opción técnica secundaria, sino un requisito fundamental para garantizar la credibilidad y validez de los resultados.
+Este descuido puede traducirse en inferencias sesgadas y en decisiones basadas en conclusiones erróneas. Como lo muestran @korn1995analysis, las estimaciones ponderadas y no ponderadas pueden diferir sustancialmente, lo que evidencia la importancia de aplicar siempre métodos consistentes con el diseño de la encuesta. Así que, considerar adecuadamente los pesos, la estratificación y las unidades de muestreo no es una opción técnica secundaria, sino un requisito fundamental para garantizar la credibilidad y validez de los resultados.
 
-Como se mencionó, las encuestas de hogares se caracterizan por:
+#### Ejemplo ilustrativo {-}
 
-* Diseños de muestreo complejos (estratificación, conglomeración y probabilidades desiguales de selección), que buscan mejorar la eficiencia y la precisión.
-* Pesos de muestreo para cada unidad, que permiten representar adecuadamente a la población.
-
-#### Ejemplo ilustrativo
-
-Suponga un país con dos regiones: la Región A (100 habitantes, ingreso promedio de \$10.000) y la Región B (900 habitantes, ingreso promedio de \$2.000). El ingreso promedio verdadero es:
+Tal como lo ilustra @UNhandbook, suponga un país con dos regiones: la Región A (con 100 habitantes y un ingreso promedio de \$10.000) y la Región B (con 900 habitantes y un ingreso promedio de \$2.000). Por ende, el ingreso promedio nacional es:
 
 $$
 \theta = \frac{(100 \times 10.000) + (900 \times 2.000)}{100 + 900} = 2.800
 $$
 
-Si se encuesta a 50 personas en cada región y se ignora el diseño de muestreo, asignando el mismo peso a todas las observaciones, se obtiene:
+Si se encuesta a 50 personas en cada región y se ignora el diseño de muestreo, asignando el mismo peso a todas las observaciones, se obtiene que:
 
 $$
 \hat{\theta} = \frac{(50 \times 10.000) + (50 \times 2.000)}{100} = 6.000
 $$
 
-El sesgo es evidente: se sobreestima el ingreso nacional, pues la Región A (10\% de la población) influye tanto como la Región B (90\%).
-
-En cambio, si se aplican *pesos proporcionales al tamaño poblacional* (2 para la Región A y 18 para la Región B), la estimación corregida es:
+En este caso, el sesgo es evidente: se sobreestima el ingreso nacional, pues la Región A (10\% de la población) influye tanto como la Región B (90\%). En cambio, si se aplican pesos proporcionales al tamaño poblacional (1 para la Región A y 9 para la Región B), la estimación corregida es:
 
 $$
-\hat{\theta} = \frac{(2 \times 50 \times 10.000) + (18 \times 50 \times 2.000)}{(2 \times 50) + (18 \times 50)} = 2.800
+\hat{\theta} = \frac{(1 \times 50 \times 10.000) + (9 \times 50 \times 2.000)}{(1 \times 50) + (9 \times 50)} = 2.800
 $$
 
 Lo que reproduce el valor verdadero y elimina el sesgo.
@@ -272,6 +223,22 @@ Para aplicar los principios de estimación del último conglomerado en las encue
 
 
 ## Práctica en `R`
+
+## Motivación {#sec-motivacion}
+
+
+En el marco de este libro, el foco se centra en el análisis de encuestas de hogares. Para que el lector disponga de ejemplos prácticos, en este capítulo se empleará la base de datos *BigCity*, que contiene información socioeconómica de 150.266 personas de una ciudad en un año específico. Entre sus variables se encuentran:
+
+* *HHID:* Identificador del hogar.
+* *PersonID:* Identificador de la persona dentro del hogar.
+* *Stratum:* Estrato geográfico (119 en total).
+* *PSU:* Unidades primarias de muestreo (1664 en total).
+* *Zone:* Zona urbana o rural.
+* *Sex:* Sexo del entrevistado.
+* *Income:* Ingreso mensual per cápita.
+* *Expenditure:* Gasto mensual per cápita.
+* *Employment:* Situación laboral.
+* *Poverty:* Condición de pobreza según ingresos.
 
 ```{r setup-cap02, eval=TRUE, include=FALSE}
 library(knitr)
