@@ -23,7 +23,7 @@
 <meta name="author" content="Andrés Gutiérrez, Giovany Babativa-Márquez, Stalyn Guerrero, Cristian Téllez" />
 
 
-<meta name="date" content="2026-04-30" />
+<meta name="date" content="2026-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -433,8 +433,7 @@ div.csl-indent {
 <span id="cb19-3"><a href="calibrando-con-r.html#cb19-3" tabindex="-1"></a>encuesta <span class="sc">%&gt;%</span></span>
 <span id="cb19-4"><a href="calibrando-con-r.html#cb19-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Zone, Sex) <span class="sc">%&gt;%</span></span>
 <span id="cb19-5"><a href="calibrando-con-r.html#cb19-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pob_rep =</span> <span class="fu">sum</span>(wk)) <span class="sc">%&gt;%</span></span>
-<span id="cb19-6"><a href="calibrando-con-r.html#cb19-6" tabindex="-1"></a>  <span class="fu">adorn_totals</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb19-7"><a href="calibrando-con-r.html#cb19-7" tabindex="-1"></a>  <span class="fu">tabla_fmt</span>()</span></code></pre></div>
+<span id="cb19-6"><a href="calibrando-con-r.html#cb19-6" tabindex="-1"></a>  <span class="fu">adorn_totals</span>()</span></code></pre></div>
 <table>
 <caption><span id="tab:tab-cal-totales">Cuadro 2.5: </span>Población representada por zona y sexo tras la calibración</caption>
 <thead>

@@ -23,7 +23,7 @@
 <meta name="author" content="Andrés Gutiérrez, Giovany Babativa-Márquez, Stalyn Guerrero, Cristian Téllez" />
 
 
-<meta name="date" content="2026-04-30" />
+<meta name="date" content="2026-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -413,8 +413,7 @@ div.csl-indent {
 <span id="cb2-6"><a href="práctica-en-r.html#cb2-6" tabindex="-1"></a>                    <span class="at">Persons =</span> <span class="fu">n</span>(),</span>
 <span id="cb2-7"><a href="práctica-en-r.html#cb2-7" tabindex="-1"></a>                    <span class="at">Income =</span> <span class="fu">sum</span>(Income),</span>
 <span id="cb2-8"><a href="práctica-en-r.html#cb2-8" tabindex="-1"></a>                    <span class="at">Expenditure =</span> <span class="fu">sum</span>(Expenditure))</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="práctica-en-r.html#cb3-1" tabindex="-1"></a>  <span class="fu">head</span>(FrameI, <span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="práctica-en-r.html#cb3-2" tabindex="-1"></a>  <span class="fu">tabla_fmt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="práctica-en-r.html#cb3-1" tabindex="-1"></a>  <span class="fu">head</span>(FrameI, <span class="dv">8</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:tab-BigCity">Cuadro 2.1: </span>Total de personas, ingresos y gastos</caption>
 <thead>
@@ -494,8 +493,7 @@ div.csl-indent {
 <span id="cb4-6"><a href="práctica-en-r.html#cb4-6" tabindex="-1"></a>        </span>
 <span id="cb4-7"><a href="práctica-en-r.html#cb4-7" tabindex="-1"></a>NIh <span class="ot">&lt;-</span> sizes<span class="sc">$</span>NIh</span>
 <span id="cb4-8"><a href="práctica-en-r.html#cb4-8" tabindex="-1"></a>nIh <span class="ot">&lt;-</span> sizes<span class="sc">$</span>nIh</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="práctica-en-r.html#cb5-1" tabindex="-1"></a><span class="fu">head</span>(sizes, <span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="práctica-en-r.html#cb5-2" tabindex="-1"></a>  <span class="fu">tabla_fmt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="práctica-en-r.html#cb5-1" tabindex="-1"></a><span class="fu">head</span>(sizes, <span class="dv">8</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:tab-sizes">Cuadro 2.2: </span>Tamaños de muestra y factores de expansión por estrato</caption>
 <thead>
@@ -567,8 +565,7 @@ div.csl-indent {
 <span id="cb7-2"><a href="práctica-en-r.html#cb7-2" tabindex="-1"></a>           BigCity[<span class="fu">which</span>(BigCity<span class="sc">$</span>PSU <span class="sc">%in%</span> sampleI), ])</span></code></pre></div>
 <p>Una vez se tiene la base de datos con la muestra de UPMs, se procede a seleccionar aquellas variables que son de interés para el estudio, cuyas primeras observaciones se presentan en la Tabla <a href="práctica-en-r.html#tab:tab-frameII">2.3</a>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="práctica-en-r.html#cb8-1" tabindex="-1"></a><span class="fu">head</span>(FrameII, <span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="práctica-en-r.html#cb8-2" tabindex="-1"></a>  <span class="fu">select</span>(Stratum<span class="sc">:</span>Zone) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="práctica-en-r.html#cb8-3" tabindex="-1"></a>  <span class="fu">tabla_fmt</span>()</span></code></pre></div>
+<span id="cb8-2"><a href="práctica-en-r.html#cb8-2" tabindex="-1"></a>  <span class="fu">select</span>(Stratum<span class="sc">:</span>Zone)</span></code></pre></div>
 <table>
 <caption><span id="tab:tab-frameII">Cuadro 2.3: </span>Muestra de UPMs con información del marco de muestreo (primeras 8 filas)</caption>
 <thead>
@@ -687,8 +684,7 @@ div.csl-indent {
 <span id="cb11-9"><a href="práctica-en-r.html#cb11-9" tabindex="-1"></a>     <span class="fu">return</span>(clusterHH)</span>
 <span id="cb11-10"><a href="práctica-en-r.html#cb11-10" tabindex="-1"></a>})</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="práctica-en-r.html#cb12-1" tabindex="-1"></a><span class="fu">head</span>(encuesta, <span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="práctica-en-r.html#cb12-2" tabindex="-1"></a>  <span class="fu">select</span>(Stratum<span class="sc">:</span>Zone) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="práctica-en-r.html#cb12-3" tabindex="-1"></a>  <span class="fu">tabla_fmt</span>()</span></code></pre></div>
+<span id="cb12-2"><a href="práctica-en-r.html#cb12-2" tabindex="-1"></a>  <span class="fu">select</span>(Stratum<span class="sc">:</span>Zone)</span></code></pre></div>
 <table>
 <caption><span id="tab:tab-encuesta">Cuadro 2.4: </span>Primeras observaciones de la muestra final seleccionada</caption>
 <thead>
